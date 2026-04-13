@@ -1,0 +1,200 @@
+/* ============================================
+   Shared Component Styles
+   ============================================ */
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  border: var(--border-width) var(--border-style) var(--color-border);
+  cursor: pointer;
+  transition: all var(--transition-speed) var(--transition-easing);
+  min-height: 48px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-active);
+}
+
+.btn-secondary {
+  background-color: var(--color-card-bg);
+  color: var(--color-fg);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: var(--shadow-active);
+}
+
+/* Focus visible for keyboard navigation */
+.btn:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* --- Cards --- */
+.card {
+  background-color: var(--color-card-bg);
+  border: var(--border-width) var(--border-style) var(--color-card-border);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+  transition: all var(--transition-speed) var(--transition-easing);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: var(--border-width) var(--border-style) var(--color-border);
+  margin-bottom: 1rem;
+  color: var(--color-accent);
+  background-color: var(--color-bg);
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* --- Badge --- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: var(--border-width) var(--border-style) var(--color-border);
+  background-color: var(--color-secondary);
+}
+
+/* --- Stat Item --- */
+.stat-item {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- Section Header --- */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-subtitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  margin-bottom: 1rem;
+}
+
+.section-description {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  max-width: 50ch;
+  margin: 0 auto;
+}
+
+/* --- Workflow Step --- */
+.workflow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.workflow-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  font-size: 1.5rem;
+  border: var(--border-width-thick) var(--border-style) var(--color-border);
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  margin-bottom: 1rem;
+  z-index: 1;
+}
+
+.workflow-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.workflow-text {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  max-width: 20ch;
+}

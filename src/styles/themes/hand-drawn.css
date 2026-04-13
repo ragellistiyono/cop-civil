@@ -1,0 +1,135 @@
+/* ============================================
+   Theme: Hand-Drawn
+   Wobbly borders, paper texture, tape/thumbtack decorations
+   ============================================ */
+
+/* Paper dot grid background */
+[data-theme="hand-drawn"] body {
+  background-image: radial-gradient(var(--color-muted) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Wobbly border-radius overrides */
+[data-theme="hand-drawn"] .btn {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+[data-theme="hand-drawn"] .card {
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+}
+
+[data-theme="hand-drawn"] .card:hover {
+  transform: rotate(-1deg) translateY(-4px);
+}
+
+[data-theme="hand-drawn"] .card-icon {
+  border-radius: 50%;
+  border-style: dashed;
+}
+
+[data-theme="hand-drawn"] .workflow-number {
+  border-radius: 50%;
+}
+
+[data-theme="hand-drawn"] .stat-item {
+  border: var(--border-width) dashed var(--color-border);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  background-color: var(--color-card-bg);
+}
+
+[data-theme="hand-drawn"] .badge {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  transform: rotate(-2deg);
+}
+
+[data-theme="hand-drawn"] .navbar {
+  border-bottom-style: dashed;
+}
+
+[data-theme="hand-drawn"] .navbar-link:hover,
+[data-theme="hand-drawn"] .navbar-link.active {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  background-color: var(--color-muted);
+}
+
+[data-theme="hand-drawn"] .bottom-nav {
+  border-top-style: dashed;
+}
+
+[data-theme="hand-drawn"] .theme-switcher-btn {
+  border-radius: 50%;
+  border-style: dashed;
+}
+
+[data-theme="hand-drawn"] .theme-switcher-popover {
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  border-style: dashed;
+}
+
+[data-theme="hand-drawn"] .theme-option {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+
+[data-theme="hand-drawn"] .about-highlight-item {
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  border-style: dashed;
+}
+
+/* Hand-drawn decorative elements */
+[data-theme="hand-drawn"] .hero-visual::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  width: 80px;
+  height: 80px;
+  border: 3px dashed var(--color-accent);
+  border-radius: 50%;
+  animation: gentle-bounce 3s ease-in-out infinite;
+}
+
+[data-theme="hand-drawn"] .hero-visual::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-card-feature-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  transform: rotate(12deg);
+}
+
+/* Hero shapes get wobbly treatment */
+[data-theme="hand-drawn"] .hero-shape-1 {
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  border-style: dashed;
+  opacity: 0.12;
+}
+
+[data-theme="hand-drawn"] .hero-shape-2 {
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  border-style: dashed;
+}
+
+[data-theme="hand-drawn"] .hero-shape-3 {
+  border-style: dashed;
+}
+
+/* Section-title wavy underline */
+[data-theme="hand-drawn"] .section-title::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 6px;
+  margin: 0.75rem auto 0;
+  background: var(--color-accent);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  transform: rotate(-1deg);
+}
+
+@keyframes gentle-bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}

@@ -1,0 +1,186 @@
+/* ============================================
+   Theme: Neo-Brutalism
+   Thick borders, halftone, mechanical interactions
+   ============================================ */
+
+/* Halftone dot grid background */
+[data-theme="neo-brutalism"] body {
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-color: var(--color-bg);
+}
+
+/* Sharp corners, thick borders */
+[data-theme="neo-brutalism"] .btn {
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 900;
+  font-family: var(--font-heading);
+}
+
+[data-theme="neo-brutalism"] .btn-primary:hover {
+  transform: translate(-1px, -1px);
+}
+
+[data-theme="neo-brutalism"] .btn-primary:active {
+  transform: translate(4px, 4px);
+}
+
+[data-theme="neo-brutalism"] .card {
+  border-radius: 0;
+  border-width: 4px;
+}
+
+[data-theme="neo-brutalism"] .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 12px 12px 0px 0px #000;
+}
+
+[data-theme="neo-brutalism"] .card-icon {
+  border-radius: 0;
+  border-width: 4px;
+  background-color: var(--color-secondary);
+}
+
+[data-theme="neo-brutalism"] .workflow-number {
+  border-radius: 0;
+  border-width: 4px;
+}
+
+[data-theme="neo-brutalism"] .stat-item {
+  border: 4px solid var(--color-border);
+  background-color: var(--color-card-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="neo-brutalism"] .stat-item:nth-child(2) {
+  background-color: var(--color-secondary);
+}
+
+[data-theme="neo-brutalism"] .stat-item:nth-child(3) {
+  background-color: var(--color-muted);
+}
+
+[data-theme="neo-brutalism"] .badge {
+  border-radius: 0;
+  border-width: 4px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  transform: rotate(2deg);
+}
+
+[data-theme="neo-brutalism"] .navbar {
+  border-bottom-width: 4px;
+}
+
+[data-theme="neo-brutalism"] .navbar-logo {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="neo-brutalism"] .navbar-link {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 900;
+}
+
+[data-theme="neo-brutalism"] .navbar-link:hover,
+[data-theme="neo-brutalism"] .navbar-link.active {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="neo-brutalism"] .bottom-nav {
+  border-top-width: 4px;
+}
+
+[data-theme="neo-brutalism"] .bottom-nav-item {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+[data-theme="neo-brutalism"] .theme-switcher-btn {
+  border-radius: 0;
+  border-width: 4px;
+}
+
+[data-theme="neo-brutalism"] .theme-switcher-popover {
+  border-radius: 0;
+  border-width: 4px;
+}
+
+[data-theme="neo-brutalism"] .section-header {
+  text-transform: uppercase;
+}
+
+[data-theme="neo-brutalism"] .section-subtitle {
+  font-weight: 900;
+  letter-spacing: 0.2em;
+}
+
+[data-theme="neo-brutalism"] .about-highlight-item {
+  border-width: 4px;
+}
+
+/* Neo section-title decoration: thick bar */
+[data-theme="neo-brutalism"] .section-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 8px;
+  margin: 1rem auto 0;
+  background: var(--color-fg);
+}
+
+/* Hero decorative blocks */
+[data-theme="neo-brutalism"] .hero-visual::before {
+  content: '';
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+  background-color: var(--color-secondary);
+  border: 4px solid var(--color-border);
+  box-shadow: 8px 8px 0px 0px #000;
+  transform: rotate(12deg);
+}
+
+[data-theme="neo-brutalism"] .hero-visual::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  width: 70px;
+  height: 70px;
+  background-color: var(--color-muted);
+  border: 4px solid var(--color-border);
+  box-shadow: 6px 6px 0px 0px #000;
+  transform: rotate(-8deg);
+}
+
+/* Hero shapes get sharp + heavy treatment */
+[data-theme="neo-brutalism"] .hero-shape-1 {
+  border-width: 4px;
+  box-shadow: 6px 6px 0px 0px #000;
+  opacity: 0.2;
+}
+
+[data-theme="neo-brutalism"] .hero-shape-2 {
+  border-width: 4px;
+  box-shadow: 4px 4px 0px 0px #000;
+}
+
+[data-theme="neo-brutalism"] .hero-shape-3 {
+  border-width: 4px;
+  border-radius: 0;
+}
+
+/* Footer thick border */
+[data-theme="neo-brutalism"] .footer {
+  border-top-width: 4px;
+}

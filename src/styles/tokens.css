@@ -1,0 +1,154 @@
+/* ============================================
+   Design Token System
+   All 3 themes define tokens as CSS custom properties.
+   Components reference var(--token-name), never hardcoded values.
+   ============================================ */
+
+/* --- Theme 1: Hand-Drawn --- */
+[data-theme="hand-drawn"] {
+  /* Colors */
+  --color-bg: #fdfbf7;
+  --color-fg: #2d2d2d;
+  --color-accent: #ff4d4d;
+  --color-secondary: #2d5da1;
+  --color-muted: #e5e0d8;
+  --color-border: #2d2d2d;
+  --color-card-bg: #ffffff;
+  --color-card-border: #2d2d2d;
+  --color-card-feature-bg: #fff9c4;
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-heading: 'Kalam', cursive;
+  --font-body: 'Patrick Hand', cursive;
+  --font-weight-heading: 700;
+  --font-weight-body: 400;
+
+  /* Radius */
+  --radius-sm: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --radius-md: 15px 225px 15px 255px / 255px 15px 225px 15px;
+  --radius-lg: 225px 15px 255px 15px / 15px 255px 15px 225px;
+  --radius-pill: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --radius-circle: 50%;
+
+  /* Borders */
+  --border-width: 2px;
+  --border-width-thick: 3px;
+  --border-style: solid;
+
+  /* Shadows */
+  --shadow-sm: 3px 3px 0px 0px rgba(45, 45, 45, 0.15);
+  --shadow-md: 4px 4px 0px 0px #2d2d2d;
+  --shadow-lg: 8px 8px 0px 0px #2d2d2d;
+  --shadow-hover: 2px 2px 0px 0px #2d2d2d;
+  --shadow-active: none;
+
+  /* Transitions */
+  --transition-speed: 100ms;
+  --transition-easing: ease-out;
+
+  /* Spacing */
+  --section-padding-y: 5rem;
+  --container-max-width: 64rem;
+  --gap: 2rem;
+}
+
+/* --- Theme 2: Neo-Brutalism --- */
+[data-theme="neo-brutalism"] {
+  /* Colors */
+  --color-bg: #FFFDF5;
+  --color-fg: #000000;
+  --color-accent: #FF6B6B;
+  --color-secondary: #FFD93D;
+  --color-muted: #C4B5FD;
+  --color-border: #000000;
+  --color-card-bg: #ffffff;
+  --color-card-border: #000000;
+  --color-card-feature-bg: #FFD93D;
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-weight-heading: 900;
+  --font-weight-body: 700;
+
+  /* Radius */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+
+  /* Borders */
+  --border-width: 4px;
+  --border-width-thick: 8px;
+  --border-style: solid;
+
+  /* Shadows */
+  --shadow-sm: 4px 4px 0px 0px #000;
+  --shadow-md: 8px 8px 0px 0px #000;
+  --shadow-lg: 12px 12px 0px 0px #000;
+  --shadow-hover: 10px 10px 0px 0px #000;
+  --shadow-active: none;
+
+  /* Transitions */
+  --transition-speed: 100ms;
+  --transition-easing: linear;
+
+  /* Spacing */
+  --section-padding-y: 5rem;
+  --container-max-width: 72rem;
+  --gap: 2rem;
+}
+
+/* --- Theme 3: Playful Geometric --- */
+[data-theme="playful-geometric"] {
+  /* Colors */
+  --color-bg: #FFFDF5;
+  --color-fg: #1E293B;
+  --color-accent: #8B5CF6;
+  --color-secondary: #F472B6;
+  --color-muted: #F1F5F9;
+  --color-border: #E2E8F0;
+  --color-card-bg: #ffffff;
+  --color-card-border: #1E293B;
+  --color-card-feature-bg: #FBBF24;
+  --color-tertiary: #FBBF24;
+  --color-quaternary: #34D399;
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-weight-heading: 800;
+  --font-weight-body: 400;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+
+  /* Borders */
+  --border-width: 2px;
+  --border-width-thick: 3px;
+  --border-style: solid;
+
+  /* Shadows */
+  --shadow-sm: 4px 4px 0px 0px #1E293B;
+  --shadow-md: 6px 6px 0px 0px #1E293B;
+  --shadow-lg: 8px 8px 0px 0px #E2E8F0;
+  --shadow-hover: 6px 6px 0px 0px #1E293B;
+  --shadow-active: 2px 2px 0px 0px #1E293B;
+
+  /* Transitions */
+  --transition-speed: 300ms;
+  --transition-easing: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Spacing */
+  --section-padding-y: 6rem;
+  --container-max-width: 72rem;
+  --gap: 2rem;
+}

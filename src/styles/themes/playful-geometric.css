@@ -1,0 +1,166 @@
+/* ============================================
+   Theme: Playful Geometric
+   Bouncy animations, confetti, blob shapes
+   ============================================ */
+
+/* Dot grid background */
+[data-theme="playful-geometric"] body {
+  background-image: radial-gradient(var(--color-border) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Rounded pill buttons */
+[data-theme="playful-geometric"] .btn {
+  border-radius: 9999px;
+}
+
+[data-theme="playful-geometric"] .btn-primary:hover {
+  transform: translate(-2px, -2px) scale(1.02);
+}
+
+[data-theme="playful-geometric"] .btn-secondary:hover {
+  background-color: var(--color-tertiary, #FBBF24);
+}
+
+/* Rounded cards with wiggle on hover */
+[data-theme="playful-geometric"] .card {
+  border-radius: 16px;
+}
+
+[data-theme="playful-geometric"] .card:hover {
+  transform: rotate(-1deg) scale(1.02);
+}
+
+[data-theme="playful-geometric"] .card-icon {
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-card-border);
+}
+
+[data-theme="playful-geometric"] .card:nth-child(2) .card-icon {
+  background-color: var(--color-secondary);
+}
+
+[data-theme="playful-geometric"] .card:nth-child(3) .card-icon {
+  background-color: var(--color-tertiary, #FBBF24);
+  color: var(--color-fg);
+}
+
+[data-theme="playful-geometric"] .card:nth-child(4) .card-icon {
+  background-color: var(--color-quaternary, #34D399);
+  color: var(--color-fg);
+}
+
+[data-theme="playful-geometric"] .workflow-number {
+  border-radius: 50%;
+}
+
+[data-theme="playful-geometric"] .stat-item {
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: 16px;
+  background-color: var(--color-card-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="playful-geometric"] .stat-item:nth-child(1) { box-shadow: 4px 4px 0px 0px var(--color-accent); }
+[data-theme="playful-geometric"] .stat-item:nth-child(2) { box-shadow: 4px 4px 0px 0px var(--color-secondary); }
+[data-theme="playful-geometric"] .stat-item:nth-child(3) { box-shadow: 4px 4px 0px 0px var(--color-tertiary, #FBBF24); }
+[data-theme="playful-geometric"] .stat-item:nth-child(4) { box-shadow: 4px 4px 0px 0px var(--color-quaternary, #34D399); }
+
+[data-theme="playful-geometric"] .badge {
+  border-radius: 9999px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+[data-theme="playful-geometric"] .navbar-link:hover,
+[data-theme="playful-geometric"] .navbar-link.active {
+  border-radius: 9999px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border-color: transparent;
+}
+
+[data-theme="playful-geometric"] .theme-switcher-btn {
+  border-radius: 50%;
+}
+
+[data-theme="playful-geometric"] .theme-switcher-popover {
+  border-radius: 16px;
+}
+
+[data-theme="playful-geometric"] .theme-option {
+  border-radius: 12px;
+}
+
+[data-theme="playful-geometric"] .about-highlight-item {
+  border-radius: 16px;
+}
+
+/* Squiggly section title underline */
+[data-theme="playful-geometric"] .section-title::after {
+  content: '~~~~~';
+  display: block;
+  font-size: 1.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+/* Hero decorative shapes */
+[data-theme="playful-geometric"] .hero-visual::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 90px;
+  height: 90px;
+  background-color: var(--color-tertiary, #FBBF24);
+  border: 2px solid var(--color-card-border);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: geometric-float 4s ease-in-out infinite;
+}
+
+[data-theme="playful-geometric"] .hero-visual::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  width: 0;
+  height: 0;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 60px solid var(--color-secondary);
+  opacity: 0.6;
+  transform: rotate(15deg);
+  animation: geometric-float 5s ease-in-out infinite reverse;
+}
+
+/* Hero shapes get rounded treatment */
+[data-theme="playful-geometric"] .hero-shape-1 {
+  border-radius: 50%;
+  opacity: 0.12;
+}
+
+[data-theme="playful-geometric"] .hero-shape-2 {
+  border-radius: 16px;
+}
+
+/* Wiggle animation for icons */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
+@keyframes geometric-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(10deg); }
+}
+
+[data-theme="playful-geometric"] .card-icon:hover {
+  animation: wiggle 0.3s ease-in-out;
+}
