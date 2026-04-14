@@ -13,7 +13,7 @@ export default function Navbar({ currentPath }) {
     <header className="navbar" role="banner">
       <div className="navbar-inner">
         <Link to="/" className="navbar-logo" aria-label="COP Civil UPT Malang - Beranda">
-          <Zap size={22} strokeWidth={2.5} />
+          
           <span>COP Civil</span>
           <span className="navbar-logo-secondary">UPT Malang</span>
         </Link>

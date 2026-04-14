@@ -3,9 +3,9 @@ import { Palette } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const THEME_META = {
-  'hand-drawn': { emoji: '✏️', label: 'Hand-Drawn' },
-  'neo-brutalism': { emoji: '💥', label: 'Neo-Brutalism' },
-  'playful-geometric': { emoji: '🔶', label: 'Playful Geometric' },
+  'hand-drawn': { emoji: '✏️', label: '1' },
+  'neo-brutalism': { emoji: '💥', label: '2' },
+  'playful-geometric': { emoji: '🔶', label: '3' },
 };
 
 export default function ThemeSwitcher() {

@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <div className="footer-logo">
-              <Zap size={20} strokeWidth={2.5} />
+  
               <span>COP Civil UPT Malang</span>
             </div>
             <p>
@@ -36,7 +36,7 @@ export default function Footer() {
             <h3 className="footer-heading">Kontak</h3>
             <div className="footer-contact-item">
               <MapPin size={16} strokeWidth={2.5} />
-              <span>Jl. Basuki Rahmat, Malang, Jawa Timur</span>
+              <span>Jl. Raya Karanglo No.90, Karanglo, Banjararum, Kec. Singosari, Kabupaten Malang, Jawa Timur 65153</span>
             </div>
             <div className="footer-contact-item">
               <Mail size={16} strokeWidth={2.5} />
@@ -44,7 +44,7 @@ export default function Footer() {
             </div>
             <div className="footer-contact-item">
               <Phone size={16} strokeWidth={2.5} />
-              <span>(0341) 123-4567</span>
+              <span>(021) 123-4567</span>
             </div>
           </div>
         </div>
