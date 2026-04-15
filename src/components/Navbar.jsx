@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Zap } from 'lucide-react';
+import { useAuth } from '../context/AuthContext.jsx';
+import UserMenu from './UserMenu';
 
 const NAV_ITEMS = [
   { path: '/', label: 'Home' },
@@ -9,6 +10,8 @@ const NAV_ITEMS = [
 ];
 
 export default function Navbar({ currentPath }) {
+  const { isAuthenticated, loading } = useAuth();
+
   return (
     <header className="navbar" role="banner">
       <div className="navbar-inner">
@@ -31,9 +34,17 @@ export default function Navbar({ currentPath }) {
           ))}
         </nav>
 
-        <button className="btn btn-primary navbar-login" aria-label="Masuk ke akun">
-          Masuk
-        </button>
+        {!loading && (
+          isAuthenticated ? (
+            <div className="navbar-login">
+              <UserMenu />
+            </div>
+          ) : (
+            <Link to="/login" className="btn btn-primary navbar-login" aria-label="Masuk ke akun">
+              Masuk
+            </Link>
+          )
+        )}
       </div>
     </header>
   );
