@@ -17,8 +17,8 @@ export default function BottomNav({ currentPath }) {
             <Link
               key={item.path}
               to={item.path}
-              className={`bottom-nav-item${currentPath === item.path ? ' active' : ''}`}
-              aria-current={currentPath === item.path ? 'page' : undefined}
+              className={`bottom-nav-item${currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path)) ? ' active' : ''}`}
+              aria-current={currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path)) ? 'page' : undefined}
               aria-label={item.label}
             >
               <item.icon size={22} strokeWidth={2.5} />

@@ -23,8 +23,8 @@ export default function Navbar({ currentPath }) {
             <Link
               key={item.path}
               to={item.path}
-              className={`navbar-link${currentPath === item.path ? ' active' : ''}`}
-              aria-current={currentPath === item.path ? 'page' : undefined}
+              className={`navbar-link${currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path)) ? ' active' : ''}`}
+              aria-current={currentPath === item.path || (item.path !== '/' && currentPath.startsWith(item.path)) ? 'page' : undefined}
             >
               {item.label}
             </Link>

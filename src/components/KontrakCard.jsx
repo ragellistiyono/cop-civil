@@ -1,11 +1,6 @@
 import { Link } from 'react-router-dom';
 import { FileText, Calendar, FolderOpen } from 'lucide-react';
-
-const STATUS_LABELS = {
-  aktif: 'Aktif',
-  selesai: 'Selesai',
-  'dalam-proses': 'Dalam Proses',
-};
+import { STATUS_LABELS } from '../data/kontrak.js';
 
 export default function KontrakCard({ kontrak }) {
   return (

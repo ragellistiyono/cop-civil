@@ -5,12 +5,7 @@ import { useKontrakById } from '../hooks/useKontrak';
 import DokumenItem from '../components/DokumenItem';
 import PdfViewer from '../components/PdfViewer';
 import Footer from '../components/Footer';
-
-const STATUS_LABELS = {
-  aktif: 'Aktif',
-  selesai: 'Selesai',
-  'dalam-proses': 'Dalam Proses',
-};
+import { STATUS_LABELS } from '../data/kontrak.js';
 
 export default function KontrakDetailPage() {
   const { id } = useParams();

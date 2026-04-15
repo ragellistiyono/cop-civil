@@ -1,12 +1,12 @@
 import { X, Maximize2, ExternalLink, Download } from 'lucide-react';
 
-function useIsMobile() {
+function getIsMobile() {
   if (typeof window === 'undefined') return false;
   return window.innerWidth < 768;
 }
 
 export default function PdfViewer({ dokumen, onClose }) {
-  const isMobile = useIsMobile();
+  const isMobile = getIsMobile();
 
   if (!dokumen) return null;
 

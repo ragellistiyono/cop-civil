@@ -1,3 +1,9 @@
+export const STATUS_LABELS = {
+  aktif: 'Aktif',
+  selesai: 'Selesai',
+  'dalam-proses': 'Dalam Proses',
+};
+
 export const KONTRAK_DATA = [
   {
     id: '002-pj-2025',
