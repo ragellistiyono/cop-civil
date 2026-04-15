@@ -529,6 +529,14 @@
   gap: 0.75rem;
 }
 
+/* --- Login Page Layout --- */
+.login-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 4rem);
+}
+
 /* --- Desktop Responsive --- */
 @media (min-width: 768px) {
   .hero-grid {
@@ -599,6 +607,10 @@
 
   .dokumen-item {
     padding: 1.25rem 1.5rem;
+  }
+
+  .user-menu-btn {
+    display: inline-flex;
   }
 }
 
