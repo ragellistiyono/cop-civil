@@ -9,6 +9,7 @@ import './styles/themes/hand-drawn.css';
 import './styles/themes/neo-brutalism.css';
 import './styles/themes/playful-geometric.css';
 import './styles/themes/professional.css';
+import './styles/themes/industrial.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

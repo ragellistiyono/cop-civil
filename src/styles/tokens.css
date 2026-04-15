@@ -1,6 +1,6 @@
 /* ============================================
    Design Token System
-   All 3 themes define tokens as CSS custom properties.
+   All 5 themes define tokens as CSS custom properties.
    Components reference var(--token-name), never hardcoded values.
    ============================================ */
 
@@ -201,4 +201,57 @@
   --section-padding-y: 6rem;
   --container-max-width: 64rem;
   --gap: 2.5rem;
+}
+
+/* --- Theme 5: Industrial Skeuomorphism --- */
+[data-theme="industrial"] {
+  /* Colors */
+  --color-bg: #e0e5ec;
+  --color-fg: #2d3436;
+  --color-accent: #ff4757;
+  --color-secondary: #4a5568;
+  --color-muted: #d1d9e6;
+  --color-border: #babecc;
+  --color-card-bg: #e0e5ec;
+  --color-card-border: transparent;
+  --color-card-feature-bg: #f0f2f5;
+  --color-white: #ffffff;
+  --color-border-light: #ffffff;
+  --color-border-dark: #a3b1c6;
+
+  /* Typography */
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-weight-heading: 800;
+  --font-weight-body: 400;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+
+  /* Borders */
+  --border-width: 0px;
+  --border-width-thick: 0px;
+  --border-style: solid;
+
+  /* Shadows (Neumorphic) */
+  --shadow-sm: 4px 4px 8px #babecc, -4px -4px 8px #ffffff;
+  --shadow-md: 8px 8px 16px #babecc, -8px -8px 16px #ffffff;
+  --shadow-lg: 12px 12px 24px #babecc, -12px -12px 24px #ffffff;
+  --shadow-hover: 10px 10px 20px #babecc, -10px -10px 20px #ffffff;
+  --shadow-active: inset 6px 6px 12px #babecc, inset -6px -6px 12px #ffffff;
+  --shadow-recessed: inset 4px 4px 8px #babecc, inset -4px -4px 8px #ffffff;
+
+  /* Transitions */
+  --transition-speed: 300ms;
+  --transition-easing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Spacing */
+  --section-padding-y: 6rem;
+  --container-max-width: 72rem;
+  --gap: 2rem;
 }

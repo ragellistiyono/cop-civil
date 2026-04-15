@@ -1,0 +1,512 @@
+/* ============================================
+   Theme: Industrial Skeuomorphism
+   Neumorphic shadows, matte plastic texture,
+   mechanical interactions, safety-orange accents
+   ============================================ */
+
+/* Chassis background — flat matte plastic */
+[data-theme="industrial"] body {
+  background-image: none;
+  background-color: var(--color-bg);
+  letter-spacing: 0.01em;
+  line-height: 1.65;
+}
+
+/* Noise texture overlay — matte plastic simulation */
+[data-theme="industrial"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Lighting hotspot — top-left radial glow */
+[data-theme="industrial"] body::after {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: -15%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="industrial"] #root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Typography ---- */
+
+[data-theme="industrial"] h1,
+[data-theme="industrial"] h2,
+[data-theme="industrial"] h3 {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+[data-theme="industrial"] h1 {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.1;
+}
+
+[data-theme="industrial"] h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.15;
+}
+
+/* ---- Buttons — Physical keys ---- */
+
+[data-theme="industrial"] .btn {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+}
+
+[data-theme="industrial"] .btn-primary {
+  background-color: var(--color-accent);
+  box-shadow: 4px 4px 8px rgba(166, 50, 60, 0.35), -4px -4px 8px rgba(255, 100, 110, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="industrial"] .btn-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow: 6px 6px 12px rgba(166, 50, 60, 0.4), -6px -6px 12px rgba(255, 100, 110, 0.35);
+}
+
+[data-theme="industrial"] .btn-primary:active {
+  transform: translateY(2px);
+  filter: brightness(0.95);
+  box-shadow: inset 4px 4px 8px rgba(166, 50, 60, 0.4), inset -4px -4px 8px rgba(255, 100, 110, 0.2);
+}
+
+[data-theme="industrial"] .btn-secondary {
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+  border-color: transparent;
+  color: var(--color-fg);
+}
+
+[data-theme="industrial"] .btn-secondary:hover {
+  background-color: var(--color-bg);
+  color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="industrial"] .btn-secondary:active {
+  transform: translateY(2px);
+  box-shadow: var(--shadow-active);
+}
+
+/* ---- Cards — Bolted modules ---- */
+
+[data-theme="industrial"] .card {
+  border-radius: 16px;
+  border: none;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  position: relative;
+}
+
+[data-theme="industrial"] .card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14px 14px, rgba(0, 0, 0, 0.12) 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 14px) 14px, rgba(0, 0, 0, 0.12) 2px, transparent 3px),
+    radial-gradient(circle at 14px calc(100% - 14px), rgba(0, 0, 0, 0.12) 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 14px) calc(100% - 14px), rgba(0, 0, 0, 0.12) 2px, transparent 3px);
+}
+
+[data-theme="industrial"] .card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="industrial"] .card-icon {
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+  color: var(--color-accent);
+}
+
+[data-theme="industrial"] .card-title {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="industrial"] .card-text {
+  color: var(--color-secondary);
+  line-height: 1.65;
+}
+
+/* ---- Navbar — Chassis panel ---- */
+
+[data-theme="industrial"] .navbar {
+  border-bottom: none;
+  background-color: rgba(224, 229, 236, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 8px rgba(186, 190, 204, 0.5);
+}
+
+[data-theme="industrial"] .navbar-logo {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="industrial"] .navbar-logo-secondary {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+[data-theme="industrial"] .navbar-link {
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+[data-theme="industrial"] .navbar-link:hover,
+[data-theme="industrial"] .navbar-link.active {
+  color: var(--color-accent);
+  border-color: transparent;
+  background-color: var(--color-muted);
+  box-shadow: var(--shadow-recessed);
+}
+
+/* ---- Badge — Stamped label ---- */
+
+[data-theme="industrial"] .badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: var(--color-bg);
+  border: none;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  color: var(--color-accent);
+  transform: none;
+}
+
+/* ---- Stats — LED readout panels ---- */
+
+[data-theme="industrial"] .stat-item {
+  border: none;
+  border-radius: 12px;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+[data-theme="industrial"] .stat-number {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-accent);
+  text-shadow: 0 0 12px rgba(255, 71, 87, 0.25);
+}
+
+[data-theme="industrial"] .stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* ---- Section Headers — Technical labels ---- */
+
+[data-theme="industrial"] .section-header {
+  margin-bottom: 3.5rem;
+}
+
+[data-theme="industrial"] .section-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+[data-theme="industrial"] .section-title {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-shadow: 0 1px 0 #ffffff;
+}
+
+[data-theme="industrial"] .section-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin: 1rem auto 0;
+  background: var(--color-accent);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
+}
+
+[data-theme="industrial"] .section-description {
+  color: var(--color-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ---- Workflow — Mechanical step indicators ---- */
+
+[data-theme="industrial"] .workflow-number {
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-accent);
+  box-shadow: 4px 4px 8px rgba(166, 50, 60, 0.3), -4px -4px 8px rgba(255, 100, 110, 0.25);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+[data-theme="industrial"] .workflow-title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="industrial"] .workflow-text {
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+}
+
+/* ---- About highlights — Neumorphic panels ---- */
+
+[data-theme="industrial"] .about-highlight-item {
+  border-radius: 12px;
+  border: none;
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="industrial"] .about-highlight-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="industrial"] .about-text p {
+  color: var(--color-secondary);
+  line-height: 1.75;
+}
+
+/* ---- Hero — Device-inspired visuals ---- */
+
+[data-theme="industrial"] .hero-visual::before {
+  content: '';
+  position: absolute;
+  top: 12%;
+  right: 8%;
+  width: 12px;
+  height: 12px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+  animation: industrial-led-pulse 2s ease-in-out infinite;
+}
+
+[data-theme="industrial"] .hero-visual::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="industrial"] .hero-shape-1 {
+  border-radius: 20px;
+  border: none;
+  background-color: var(--color-bg);
+  opacity: 0.6;
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="industrial"] .hero-shape-2 {
+  border-radius: 12px;
+  border: none;
+  background-color: var(--color-muted);
+  opacity: 0.4;
+  transform: rotate(15deg);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="industrial"] .hero-shape-3 {
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-accent);
+  opacity: 0.1;
+  box-shadow: 0 0 20px rgba(255, 71, 87, 0.2);
+}
+
+[data-theme="industrial"] .hero-accent {
+  color: var(--color-accent);
+  text-shadow: none;
+}
+
+/* ---- Bottom Navigation — Mechanical bar ---- */
+
+[data-theme="industrial"] .bottom-nav {
+  border-top: none;
+  background-color: rgba(224, 229, 236, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 -2px 8px rgba(186, 190, 204, 0.5);
+}
+
+[data-theme="industrial"] .bottom-nav-item {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+[data-theme="industrial"] .bottom-nav-item.active {
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
+}
+
+/* ---- Theme Switcher — Neumorphic control ---- */
+
+[data-theme="industrial"] .theme-switcher-btn {
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="industrial"] .theme-switcher-btn:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="industrial"] .theme-switcher-popover {
+  border-radius: 16px;
+  border: none;
+  background-color: var(--color-bg);
+  box-shadow: var(--shadow-lg);
+}
+
+[data-theme="industrial"] .theme-option {
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: none;
+}
+
+[data-theme="industrial"] .theme-option:hover {
+  border: none;
+  background-color: var(--color-muted);
+  box-shadow: var(--shadow-recessed);
+}
+
+[data-theme="industrial"] .theme-option.active {
+  background-color: var(--color-accent);
+  border: none;
+  box-shadow: inset 3px 3px 6px rgba(166, 50, 60, 0.3), inset -3px -3px 6px rgba(255, 100, 110, 0.2);
+}
+
+/* ---- Footer — Dark technical panel ---- */
+
+[data-theme="industrial"] .footer {
+  border-top: none;
+  background-color: #2d3436;
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="industrial"] .footer-heading {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+[data-theme="industrial"] .footer-logo {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="industrial"] .footer-link {
+  font-size: 0.85rem;
+}
+
+[data-theme="industrial"] .footer-link:hover {
+  color: var(--color-accent);
+  text-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
+}
+
+[data-theme="industrial"] .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Section alt — recessed panel ---- */
+
+[data-theme="industrial"] .section-alt {
+  background-color: var(--color-muted);
+  box-shadow: inset 0 4px 12px rgba(186, 190, 204, 0.4), inset 0 -4px 12px rgba(186, 190, 204, 0.4);
+}
+
+/* ---- Focus — Accent glow ring ---- */
+
+[data-theme="industrial"] .btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(255, 71, 87, 0.15);
+}
+
+/* ---- Selection — Safety-orange highlight ---- */
+
+[data-theme="industrial"] ::selection {
+  background-color: rgba(255, 71, 87, 0.2);
+  color: var(--color-fg);
+}
+
+/* ---- LED pulse animation ---- */
+
+@keyframes industrial-led-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 4px rgba(34, 197, 94, 0.3);
+  }
+}

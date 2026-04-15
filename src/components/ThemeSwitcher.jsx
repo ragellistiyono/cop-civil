@@ -7,6 +7,7 @@ const THEME_META = {
   'neo-brutalism': { emoji: '💥', label: '2' },
   'playful-geometric': { emoji: '🔶', label: '3' },
   'professional': { emoji: '🏛️', label: '4' },
+  'industrial': { emoji: '⚙️', label: '5' },
 };
 
 export default function ThemeSwitcher() {

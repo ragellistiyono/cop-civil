@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-const THEMES = ['hand-drawn', 'neo-brutalism', 'playful-geometric', 'professional'];
+const THEMES = ['hand-drawn', 'neo-brutalism', 'playful-geometric', 'professional', 'industrial'];
 const STORAGE_KEY = 'pln-cop-theme';
 
 const ThemeContext = createContext();
