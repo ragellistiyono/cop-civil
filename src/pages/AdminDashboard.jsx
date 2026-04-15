@@ -162,10 +162,6 @@ export default function AdminDashboard() {
 
   const handleDokumenRefresh = () => {
     refreshKontrak();
-    if (dokumenKontrak) {
-      const updated = kontrakList.find((k) => k.$id === dokumenKontrak.$id);
-      if (updated) setDokumenKontrak(updated);
-    }
   };
 
   useEffect(() => {
@@ -365,6 +361,11 @@ export default function AdminDashboard() {
         onConfirm={handleDeleteKontrak}
         deleting={kontrakFormSubmitting}
         error={kontrakFormError}
+        title="Hapus Kontrak"
+        message={deletingKontrak ? (
+          <>Apakah Anda yakin ingin menghapus kontrak <strong>{deletingKontrak.namaProyek}</strong> ({deletingKontrak.nomorKontrak})? Semua dokumen terkait juga akan dihapus. Tindakan ini tidak dapat dibatalkan.</>
+        ) : undefined}
+        confirmLabel="Hapus Kontrak"
       />
 
       <DokumenManager

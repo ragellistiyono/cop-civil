@@ -79,6 +79,7 @@ export function useKontrakList() {
         if (!cancelled) {
           console.warn('[useKontrakList] Appwrite fetch failed, using static fallback:', err.message);
           setKontrakList(KONTRAK_DATA);
+          setError('Data ditampilkan dari cache lokal karena gagal terhubung ke server.');
           setLoading(false);
         }
       }
@@ -128,6 +129,8 @@ export function useKontrakById(id) {
           console.warn('[useKontrakById] Appwrite fetch failed, trying static fallback:', err.message);
           const found = KONTRAK_DATA.find((k) => k.id === id) ?? null;
           setKontrak(found);
+          if (found) setError('Data ditampilkan dari cache lokal karena gagal terhubung ke server.');
+          else setError('Kontrak tidak ditemukan.');
           setLoading(false);
         }
       }

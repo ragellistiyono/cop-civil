@@ -1,13 +1,25 @@
 import { AlertTriangle, AlertCircle, X } from 'lucide-react';
 
-export default function DeleteConfirmModal({ open, user, onClose, onConfirm, deleting, error = '' }) {
+export default function DeleteConfirmModal({
+  open, user, onClose, onConfirm, deleting, error = '',
+  title = 'Hapus User',
+  message,
+  confirmLabel = 'Hapus User',
+}) {
   if (!open || !user) return null;
+
+  const defaultMessage = (
+    <>
+      Apakah Anda yakin ingin menghapus akun <strong>{user.name || user.email}</strong>
+      {user.name ? ` (${user.email})` : ''}? Tindakan ini tidak dapat dibatalkan.
+    </>
+  );
 
   return (
     <div className="modal-overlay" onClick={onClose} onKeyDown={(e) => e.key === 'Escape' && onClose()}>
       <div className="modal-content card" role="dialog" aria-modal="true" aria-labelledby="delete-confirm-title" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 id="delete-confirm-title" className="modal-title">Hapus User</h2>
+          <h2 id="delete-confirm-title" className="modal-title">{title}</h2>
           <button className="modal-close" onClick={onClose} aria-label="Tutup">
             <X size={20} strokeWidth={2.5} />
           </button>
@@ -17,10 +29,7 @@ export default function DeleteConfirmModal({ open, user, onClose, onConfirm, del
           <div className="delete-confirm-icon" aria-hidden="true">
             <AlertTriangle size={48} strokeWidth={1.5} />
           </div>
-          <p>
-            Apakah Anda yakin ingin menghapus akun <strong>{user.name || user.email}</strong>
-            {user.name ? ` (${user.email})` : ''}? Tindakan ini tidak dapat dibatalkan.
-          </p>
+          <p>{message || defaultMessage}</p>
         </div>
 
         {error && (
@@ -35,7 +44,7 @@ export default function DeleteConfirmModal({ open, user, onClose, onConfirm, del
             Batal
           </button>
           <button className="btn btn-danger" onClick={onConfirm} disabled={deleting}>
-            {deleting ? 'Menghapus...' : 'Hapus User'}
+            {deleting ? 'Menghapus...' : confirmLabel}
           </button>
         </div>
       </div>

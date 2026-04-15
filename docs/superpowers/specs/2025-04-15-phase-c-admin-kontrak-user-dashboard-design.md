@@ -98,6 +98,7 @@ Tambahan env vars pada function (set di Appwrite Console):
 - `APPWRITE_DATABASE_ID`
 - `APPWRITE_COLLECTION_KONTRAK`
 - `APPWRITE_COLLECTION_DOKUMEN`
+- `APPWRITE_BUCKET_KONTRAK`
 
 **Routes:**
 

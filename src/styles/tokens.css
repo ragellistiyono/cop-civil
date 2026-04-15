@@ -221,6 +221,12 @@
   --color-border-dark: #a3b1c6;
   --color-danger: #dc2626;
   --color-danger-bg: rgba(220, 38, 38, 0.08);
+  --color-success: #166534;
+  --color-success-bg: #dcfce7;
+  --color-warning: #92400e;
+  --color-warning-bg: #fef3c7;
+  --color-info: #1e40af;
+  --color-info-bg: #dbeafe;
 
   /* Typography */
   --font-heading: 'Inter', sans-serif;

@@ -44,12 +44,13 @@ export default function DokumenManager({ open, kontrak, onClose, onRefresh, admi
     if (!file) { setUploadError('Pilih file PDF untuk diunggah.'); return; }
 
     setUploading(true);
+    let uploadedFileId = null;
     try {
-      const fileId = await uploadFile(file);
+      uploadedFileId = await uploadFile(file);
       await addDokumen(kontrak.$id, {
         tipe,
         nama: nama.trim(),
-        fileId,
+        fileId: uploadedFileId,
         sumber: 'appwrite',
       });
       setNama('');
@@ -58,6 +59,9 @@ export default function DokumenManager({ open, kontrak, onClose, onRefresh, admi
       setUploadSuccess('Dokumen berhasil diunggah.');
       onRefresh();
     } catch (err) {
+      if (uploadedFileId) {
+        try { await deleteFile(uploadedFileId); } catch { /* best-effort cleanup */ }
+      }
       setUploadError(err.message);
     } finally {
       setUploading(false);

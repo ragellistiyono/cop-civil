@@ -120,7 +120,8 @@ async function handleUpdateKontrak(databases, kontrakId, req) {
     data.nomorKontrak = body.nomorKontrak.trim();
   if (body.namaProyek !== undefined && body.namaProyek.trim())
     data.namaProyek = body.namaProyek.trim();
-  if (body.tanggal !== undefined) data.tanggal = body.tanggal;
+  if (body.tanggal !== undefined && body.tanggal.trim())
+    data.tanggal = body.tanggal.trim();
   if (body.status !== undefined) {
     if (!VALID_STATUS.includes(body.status))
       return { _status: 400, error: 'Status harus aktif, selesai, atau dalam-proses.' };
