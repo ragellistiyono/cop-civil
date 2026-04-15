@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { LogIn, AlertCircle, Loader } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.jsx';
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Login() {
   const { login, isAuthenticated, isAdmin, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const returnTo = location.state?.from;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,8 +33,12 @@ export default function Login() {
     e.preventDefault();
     setError('');
 
-    if (!email || !password) {
-      setError('Silakan isi alamat email dan kata sandi.');
+    if (!email || !EMAIL_RE.test(email)) {
+      setError('Silakan masukkan alamat email yang valid.');
+      return;
+    }
+    if (!password || password.length < 8) {
+      setError('Kata sandi harus minimal 8 karakter.');
       return;
     }
 
@@ -38,7 +46,8 @@ export default function Login() {
     try {
       const currentUser = await login(email, password);
       const isAdminUser = currentUser?.labels?.includes('admin') ?? false;
-      navigate(isAdminUser ? '/admin/dashboard' : '/dashboard', { replace: true });
+      const dest = returnTo || (isAdminUser ? '/admin/dashboard' : '/dashboard');
+      navigate(dest, { replace: true });
     } catch (err) {
       setError(
         err?.message === 'Invalid credentials. Please check the email and password.'

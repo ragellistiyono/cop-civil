@@ -219,6 +219,8 @@
   --color-white: #ffffff;
   --color-border-light: #ffffff;
   --color-border-dark: #a3b1c6;
+  --color-danger: #dc2626;
+  --color-danger-bg: rgba(220, 38, 38, 0.08);
 
   /* Typography */
   --font-heading: 'Inter', sans-serif;

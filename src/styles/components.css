@@ -531,6 +531,11 @@
   padding: 2.5rem;
 }
 
+.login-card:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
 .login-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -604,8 +609,8 @@
   gap: 0.5rem;
   padding: 0.75rem 1rem;
   font-size: 0.85rem;
-  color: #dc2626;
-  background-color: rgba(220, 38, 38, 0.08);
+  color: var(--color-danger);
+  background-color: var(--color-danger-bg);
   border-radius: var(--radius-sm);
 }
 
@@ -741,11 +746,11 @@
 }
 
 .user-menu-item--logout:hover {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .user-menu-item--logout:hover svg {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .user-menu-divider {

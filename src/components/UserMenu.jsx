@@ -15,9 +15,19 @@ export default function UserMenu() {
         setOpen(false);
       }
     }
+    function handleKeyDown(e) {
+      if (e.key === 'Escape' && open) {
+        setOpen(false);
+        menuRef.current?.querySelector('.user-menu-btn')?.focus();
+      }
+    }
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open]);
 
   const displayName = user?.name || user?.email || 'User';
 
@@ -28,7 +38,11 @@ export default function UserMenu() {
 
   const handleLogout = async () => {
     setOpen(false);
-    await logout();
+    try {
+      await logout();
+    } catch {
+      // Session may have expired — clear local state regardless
+    }
     navigate('/');
   };
 
