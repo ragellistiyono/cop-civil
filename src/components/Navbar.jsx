@@ -4,7 +4,7 @@ import { Zap } from 'lucide-react';
 const NAV_ITEMS = [
   { path: '/', label: 'Home' },
   { path: '/panduan', label: 'Panduan' },
-  { path: '/pekerjaan-beton', label: 'Pekerjaan Beton' },
+  { path: '/kontrak', label: 'Kontrak' },
   { path: '/qna', label: 'Q & A' },
 ];
 
