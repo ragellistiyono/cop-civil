@@ -27,8 +27,6 @@ export default function Hero() {
             </div>
           </div>
           <div className="hero-visual" aria-hidden="true">
-            <div className="hero-shape hero-shape-1" />
-            <div className="hero-shape hero-shape-2" />
             <img
               src="/images/Logo_PLN.svg"
               alt="PLN Logo"
