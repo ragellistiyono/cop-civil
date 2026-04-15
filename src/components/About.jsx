@@ -7,13 +7,13 @@ export default function About() {
         <div className="section-header">
           <p className="section-subtitle">Tentang Kami</p>
           <h2 className="section-title" id="about-heading">
-            COP Civil UPT Malang
+            CIVIL QTRACK UPT Malang
           </h2>
         </div>
         <div className="about-content">
           <div className="about-text">
             <p>
-              COP Civil UPT Malang merupakan bagian dari PT PLN (Persero) yang bertanggung jawab
+              CIVIL QTRACK UPT Malang merupakan bagian dari PT PLN (Persero) yang bertanggung jawab
               atas pengawasan dan pengendalian mutu pekerjaan sipil dalam proyek konstruksi
               infrastruktur kelistrikan di wilayah UPT Malang.
             </p>

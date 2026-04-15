@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="footer-brand">
             <div className="footer-logo">
   
-              <span>COP Civil UPT Malang</span>
+              <span>CIVIL QTRACK UPT Malang</span>
             </div>
             <p>
               Membangun fondasi kuat bagi infrastruktur kelistrikan yang andal dan berkelanjutan.
@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          © 2026 PT PLN (Persero) — COP Civil UPT Malang. Hak cipta dilindungi.
+          © 2026 PT PLN (Persero) — CIVIL QTRACK UPT Malang. Hak cipta dilindungi.
         </div>
       </div>
     </footer>

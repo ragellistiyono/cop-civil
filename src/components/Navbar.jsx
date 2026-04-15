@@ -12,9 +12,9 @@ export default function Navbar({ currentPath }) {
   return (
     <header className="navbar" role="banner">
       <div className="navbar-inner">
-        <Link to="/" className="navbar-logo" aria-label="COP Civil UPT Malang - Beranda">
+        <Link to="/" className="navbar-logo" aria-label="CIVIL QTRACK UPT Malang - Beranda">
           
-          <span>COP Civil</span>
+          <span>CIVIL QTRACK</span>
           <span className="navbar-logo-secondary">UPT Malang</span>
         </Link>
 

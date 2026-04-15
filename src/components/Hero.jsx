@@ -9,7 +9,7 @@ export default function Hero() {
           <div className="hero-content">
             <span className="badge">PT PLN (Persero)</span>
             <h1 id="hero-heading">
-              COP Civil UPT Malang<br />
+              CIVIL QTRACK UPT Malang<br />
               <span className="hero-accent">Konstruksi</span>
             </h1>
             <p className="hero-tagline">
