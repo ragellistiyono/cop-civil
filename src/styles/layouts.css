@@ -612,10 +612,23 @@
   .user-menu-btn {
     display: inline-flex;
   }
+
+  .admin-section {
+    padding: 2rem;
+  }
+
+  .admin-table-name,
+  .admin-table-email {
+    max-width: none;
+  }
 }
 
 @media (min-width: 1024px) {
   .kontrak-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .admin-section {
+    padding: 2.5rem;
   }
 }

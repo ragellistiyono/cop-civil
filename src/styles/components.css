@@ -803,3 +803,350 @@
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
+
+/* --- Admin Dashboard --- */
+.admin-header {
+  margin-bottom: 2rem;
+}
+
+.admin-header h1 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 0.25rem;
+}
+
+.admin-subtitle {
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+}
+
+.admin-section {
+  padding: 1.5rem;
+}
+
+.admin-section:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
+.admin-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.admin-section-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  font-size: 1.25rem;
+}
+
+.admin-search-row {
+  margin-bottom: 1.25rem;
+}
+
+.admin-search-field {
+  position: relative;
+  max-width: 24rem;
+}
+
+.admin-search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-secondary);
+  pointer-events: none;
+  display: inline;
+}
+
+.admin-search-input {
+  padding-left: 2.75rem !important;
+}
+
+/* --- Admin Table --- */
+.admin-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.admin-table tbody tr {
+  transition: background-color 150ms;
+}
+
+.admin-table tbody tr:hover {
+  background-color: var(--color-muted);
+}
+
+.admin-table-name {
+  font-weight: 600;
+}
+
+.admin-table-email {
+  color: var(--color-secondary);
+}
+
+.admin-table-date {
+  color: var(--color-secondary);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.admin-table-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-table-loading,
+.admin-table-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 1rem;
+  color: var(--color-secondary);
+}
+
+/* --- Role Badge --- */
+.admin-role-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.admin-role-badge--admin {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.admin-role-badge--user {
+  background-color: var(--color-muted);
+  color: var(--color-secondary);
+}
+
+/* --- Action Button --- */
+.admin-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--color-secondary);
+  transition: all 150ms;
+}
+
+.admin-action-btn svg {
+  display: inline;
+}
+
+.admin-action-btn:hover {
+  background-color: var(--color-muted);
+  color: var(--color-fg);
+}
+
+.admin-action-btn--danger:hover {
+  color: var(--color-danger);
+}
+
+/* --- Admin Pagination --- */
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.admin-pagination-info {
+  font-size: 0.8rem;
+  color: var(--color-secondary);
+}
+
+.admin-pagination-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-pagination-btn {
+  font-size: 0.8rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.admin-pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* --- Modal --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  animation: fadeIn 150ms ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 28rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.75rem;
+  animation: slideUp 200ms ease-out;
+}
+
+.modal-content:hover {
+  transform: none;
+  box-shadow: var(--shadow-lg);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  font-size: 1.25rem;
+}
+
+.modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--color-secondary);
+  transition: all 150ms;
+}
+
+.modal-close svg {
+  display: inline;
+}
+
+.modal-close:hover {
+  background-color: var(--color-muted);
+  color: var(--color-fg);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.modal-btn-cancel {
+  background-color: var(--color-muted);
+  color: var(--color-fg);
+}
+
+.modal-btn-cancel:hover {
+  background-color: var(--color-border);
+}
+
+/* --- Danger Button --- */
+.btn-danger {
+  background-color: var(--color-danger);
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-danger:hover {
+  opacity: 0.9;
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Delete Confirm --- */
+.delete-confirm-body {
+  text-align: center;
+  align-items: center;
+}
+
+.delete-confirm-icon {
+  color: var(--color-danger);
+  margin-bottom: 0.5rem;
+}
+
+.delete-confirm-body p {
+  font-size: 0.9rem;
+  color: var(--color-secondary);
+  line-height: 1.6;
+}
+
+/* --- Select Input --- */
+.admin-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
