@@ -13,6 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import AccessDenied from './pages/AccessDenied';
 import AdminDashboard from './pages/AdminDashboard';
+import UserDashboard from './pages/UserDashboard';
 
 function AppLayout() {
   const location = useLocation();
@@ -36,7 +37,7 @@ function AppLayout() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <UnderConstruction title="Dashboard" />
+                <UserDashboard />
               </ProtectedRoute>
             }
           />
