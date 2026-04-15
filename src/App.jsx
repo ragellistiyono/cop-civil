@@ -19,7 +19,7 @@ function AppLayout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/panduan" element={<UnderConstruction title="Panduan" />} />
-          <Route path="/pekerjaan-beton" element={<UnderConstruction title="Pekerjaan Beton" />} />
+          <Route path="/kontrak" element={<UnderConstruction title="Kontrak" />} />
           <Route path="/qna" element={<UnderConstruction title="Q & A" />} />
         </Routes>
       </main>
