@@ -11,6 +11,7 @@ export default function AdminDashboard() {
   const { users, total, loading, error, fetchUsers, createUser, updateUser, deleteUser } = useUsers();
 
   const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
   const [page, setPage] = useState(1);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
@@ -21,18 +22,19 @@ export default function AdminDashboard() {
   const offset = (page - 1) * PAGE_SIZE;
   const totalPages = Math.ceil(total / PAGE_SIZE);
 
-  const refresh = useCallback(() => {
-    fetchUsers(search, PAGE_SIZE, offset);
-  }, [fetchUsers, search, offset]);
-
-  useEffect(() => { refresh(); }, [refresh]);
-
   useEffect(() => {
     const timer = setTimeout(() => {
+      setDebouncedSearch(search);
       setPage(1);
     }, 300);
     return () => clearTimeout(timer);
   }, [search]);
+
+  const refresh = useCallback(() => {
+    fetchUsers(debouncedSearch, PAGE_SIZE, offset);
+  }, [fetchUsers, debouncedSearch, offset]);
+
+  useEffect(() => { refresh(); }, [refresh]);
 
   const handleCreate = async (data) => {
     setFormSubmitting(true);
@@ -66,6 +68,7 @@ export default function AdminDashboard() {
   const handleDelete = async () => {
     if (!deletingUser) return;
     setFormSubmitting(true);
+    setFormError('');
     try {
       await deleteUser(deletingUser.$id);
       setDeletingUser(null);
@@ -101,6 +104,7 @@ export default function AdminDashboard() {
                 type="text"
                 className="login-input admin-search-input"
                 placeholder="Cari berdasarkan nama..."
+                aria-label="Cari user berdasarkan nama"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -150,25 +154,28 @@ export default function AdminDashboard() {
       <UserFormModal
         open={showCreateModal}
         user={null}
-        onClose={() => setShowCreateModal(false)}
+        onClose={() => { setShowCreateModal(false); setFormError(''); }}
         onSubmit={handleCreate}
         submitting={formSubmitting}
+        externalError={formError}
       />
 
       <UserFormModal
         open={editingUser !== null}
         user={editingUser}
-        onClose={() => setEditingUser(null)}
+        onClose={() => { setEditingUser(null); setFormError(''); }}
         onSubmit={handleUpdate}
         submitting={formSubmitting}
+        externalError={formError}
       />
 
       <DeleteConfirmModal
         open={deletingUser !== null}
         user={deletingUser}
-        onClose={() => setDeletingUser(null)}
+        onClose={() => { setDeletingUser(null); setFormError(''); }}
         onConfirm={handleDelete}
         deleting={formSubmitting}
+        error={formError}
       />
     </section>
   );

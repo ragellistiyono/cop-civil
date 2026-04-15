@@ -23,6 +23,10 @@ function extractPathId(path) {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+function formatUser(u) {
+  return { $id: u.$id, name: u.name, email: u.email, labels: u.labels, status: u.status, registration: u.registration };
+}
+
 async function handleListUsers(users, req) {
   const search = req.query?.search || '';
   const limit = Math.min(parseInt(req.query?.limit) || 25, 100);
@@ -34,14 +38,7 @@ async function handleListUsers(users, req) {
   const result = await users.list(queries);
   return {
     total: result.total,
-    users: result.users.map((u) => ({
-      $id: u.$id,
-      name: u.name,
-      email: u.email,
-      labels: u.labels,
-      status: u.status,
-      registration: u.registration,
-    })),
+    users: result.users.map(formatUser),
   };
 }
 
@@ -62,22 +59,14 @@ async function handleCreateUser(users, req) {
   }
 
   const final = await users.get(user.$id);
-  return {
-    $id: final.$id,
-    name: final.name,
-    email: final.email,
-    labels: final.labels,
-    status: final.status,
-    registration: final.registration,
-  };
+  return formatUser(final);
 }
 
 async function handleUpdateUser(users, userId, req) {
   const { name, role } = parseBody(req);
 
-  let existing;
   try {
-    existing = await users.get(userId);
+    await users.get(userId);
   } catch {
     return { _status: 404, error: 'User tidak ditemukan.' };
   }
@@ -93,14 +82,7 @@ async function handleUpdateUser(users, userId, req) {
   }
 
   const updated = await users.get(userId);
-  return {
-    $id: updated.$id,
-    name: updated.name,
-    email: updated.email,
-    labels: updated.labels,
-    status: updated.status,
-    registration: updated.registration,
-  };
+  return formatUser(updated);
 }
 
 async function handleDeleteUser(users, userId, req) {

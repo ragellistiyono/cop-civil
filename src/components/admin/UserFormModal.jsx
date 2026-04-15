@@ -3,7 +3,7 @@ import { X, AlertCircle } from 'lucide-react';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function UserFormModal({ open, user, onClose, onSubmit, submitting }) {
+export default function UserFormModal({ open, user, onClose, onSubmit, submitting, externalError = '' }) {
   const isEdit = user !== null;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -52,10 +52,10 @@ export default function UserFormModal({ open, user, onClose, onSubmit, submittin
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content card" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay" onClick={onClose} onKeyDown={(e) => e.key === 'Escape' && onClose()}>
+      <div className="modal-content card" role="dialog" aria-modal="true" aria-labelledby="user-form-title" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2 className="modal-title">{isEdit ? 'Edit User' : 'Tambah User Baru'}</h2>
+          <h2 id="user-form-title" className="modal-title">{isEdit ? 'Edit User' : 'Tambah User Baru'}</h2>
           <button className="modal-close" onClick={onClose} aria-label="Tutup">
             <X size={20} strokeWidth={2.5} />
           </button>
@@ -134,10 +134,10 @@ export default function UserFormModal({ open, user, onClose, onSubmit, submittin
             </select>
           </div>
 
-          {error && (
+          {(error || externalError) && (
             <div className="login-error" role="alert">
               <AlertCircle size={16} strokeWidth={2.5} />
-              <span>{error}</span>
+              <span>{error || externalError}</span>
             </div>
           )}
 

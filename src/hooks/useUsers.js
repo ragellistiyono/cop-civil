@@ -3,6 +3,10 @@ import { functions } from '../lib/appwrite.js';
 
 const FUNCTION_ID = import.meta.env.VITE_APPWRITE_FUNCTION_MANAGE_USERS;
 
+if (import.meta.env.DEV && !FUNCTION_ID) {
+  console.warn('[useUsers] VITE_APPWRITE_FUNCTION_MANAGE_USERS is not set.');
+}
+
 async function callManageUsers(method, path, body = null) {
   const params = {
     functionId: FUNCTION_ID,
@@ -13,7 +17,13 @@ async function callManageUsers(method, path, body = null) {
   if (body) params.body = JSON.stringify(body);
 
   const execution = await functions.createExecution(params);
-  const response = JSON.parse(execution.responseBody);
+
+  let response;
+  try {
+    response = JSON.parse(execution.responseBody);
+  } catch {
+    throw new Error('Respons server tidak valid. Silakan coba lagi.');
+  }
 
   if (execution.responseStatusCode >= 400) {
     throw new Error(response.error || 'Terjadi kesalahan.');
