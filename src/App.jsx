@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import BottomNav from './components/BottomNav';
-import ThemeSwitcher from './components/ThemeSwitcher';
+// DISABLED: Theme switcher floating button — uncomment to re-enable multi-theme support
+// import ThemeSwitcher from './components/ThemeSwitcher';
 import Home from './pages/Home';
 import UnderConstruction from './components/UnderConstruction';
 
@@ -24,7 +25,8 @@ function AppLayout() {
         </Routes>
       </main>
       <BottomNav currentPath={location.pathname} />
-      <ThemeSwitcher />
+      {/* DISABLED: Theme switcher floating button — uncomment to re-enable */}
+      {/* <ThemeSwitcher /> */}
     </>
   );
 }

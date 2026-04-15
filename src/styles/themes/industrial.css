@@ -1,7 +1,7 @@
 /* ============================================
    Theme: Industrial Skeuomorphism
    Neumorphic shadows, matte plastic texture,
-   mechanical interactions, safety-orange accents
+   mechanical interactions, PLN blue + yellow accents
    ============================================ */
 
 /* Chassis background — flat matte plastic */
@@ -74,20 +74,20 @@
 
 [data-theme="industrial"] .btn-primary {
   background-color: var(--color-accent);
-  box-shadow: 4px 4px 8px rgba(166, 50, 60, 0.35), -4px -4px 8px rgba(255, 100, 110, 0.3);
+  box-shadow: 4px 4px 8px rgba(0, 80, 160, 0.35), -4px -4px 8px rgba(80, 160, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="industrial"] .btn-primary:hover {
   transform: translateY(-1px);
   filter: brightness(1.1);
-  box-shadow: 6px 6px 12px rgba(166, 50, 60, 0.4), -6px -6px 12px rgba(255, 100, 110, 0.35);
+  box-shadow: 6px 6px 12px rgba(0, 80, 160, 0.4), -6px -6px 12px rgba(80, 160, 255, 0.35);
 }
 
 [data-theme="industrial"] .btn-primary:active {
   transform: translateY(2px);
   filter: brightness(0.95);
-  box-shadow: inset 4px 4px 8px rgba(166, 50, 60, 0.4), inset -4px -4px 8px rgba(255, 100, 110, 0.2);
+  box-shadow: inset 4px 4px 8px rgba(0, 80, 160, 0.4), inset -4px -4px 8px rgba(80, 160, 255, 0.2);
 }
 
 [data-theme="industrial"] .btn-secondary {
@@ -227,7 +227,7 @@
   font-family: var(--font-mono);
   font-weight: 700;
   color: var(--color-accent);
-  text-shadow: 0 0 12px rgba(255, 71, 87, 0.25);
+  text-shadow: 0 0 12px rgba(0, 120, 240, 0.25);
 }
 
 [data-theme="industrial"] .stat-label {
@@ -268,7 +268,7 @@
   margin: 1rem auto 0;
   background: var(--color-accent);
   border-radius: 2px;
-  box-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
+  box-shadow: 0 0 8px rgba(0, 120, 240, 0.3);
 }
 
 [data-theme="industrial"] .section-description {
@@ -283,7 +283,7 @@
   border-radius: 50%;
   border: none;
   background-color: var(--color-accent);
-  box-shadow: 4px 4px 8px rgba(166, 50, 60, 0.3), -4px -4px 8px rgba(255, 100, 110, 0.25);
+  box-shadow: 4px 4px 8px rgba(0, 80, 160, 0.3), -4px -4px 8px rgba(80, 160, 255, 0.25);
   font-family: var(--font-mono);
   font-weight: 700;
 }
@@ -367,7 +367,7 @@
   border: none;
   background-color: var(--color-accent);
   opacity: 0.1;
-  box-shadow: 0 0 20px rgba(255, 71, 87, 0.2);
+  box-shadow: 0 0 20px rgba(0, 120, 240, 0.2);
 }
 
 [data-theme="industrial"] .hero-accent {
@@ -395,7 +395,7 @@
 
 [data-theme="industrial"] .bottom-nav-item.active {
   transform: translateY(-2px);
-  text-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
+  text-shadow: 0 0 8px rgba(0, 120, 240, 0.3);
 }
 
 /* ---- Theme Switcher — Neumorphic control ---- */
@@ -435,7 +435,7 @@
 [data-theme="industrial"] .theme-option.active {
   background-color: var(--color-accent);
   border: none;
-  box-shadow: inset 3px 3px 6px rgba(166, 50, 60, 0.3), inset -3px -3px 6px rgba(255, 100, 110, 0.2);
+  box-shadow: inset 3px 3px 6px rgba(0, 80, 160, 0.3), inset -3px -3px 6px rgba(80, 160, 255, 0.2);
 }
 
 /* ---- Footer — Dark technical panel ---- */
@@ -466,7 +466,7 @@
 
 [data-theme="industrial"] .footer-link:hover {
   color: var(--color-accent);
-  text-shadow: 0 0 8px rgba(255, 71, 87, 0.3);
+  text-shadow: 0 0 8px rgba(0, 120, 240, 0.3);
 }
 
 [data-theme="industrial"] .footer-bottom {
@@ -488,13 +488,13 @@
 [data-theme="industrial"] .btn:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  box-shadow: 0 0 0 4px rgba(255, 71, 87, 0.15);
+  box-shadow: 0 0 0 4px rgba(0, 120, 240, 0.15);
 }
 
-/* ---- Selection — Safety-orange highlight ---- */
+/* ---- Selection — PLN blue highlight ---- */
 
 [data-theme="industrial"] ::selection {
-  background-color: rgba(255, 71, 87, 0.2);
+  background-color: rgba(0, 120, 240, 0.2);
   color: var(--color-fg);
 }
 

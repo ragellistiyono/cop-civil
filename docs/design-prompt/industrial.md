@@ -19,7 +19,7 @@ This style transcends simple skeuomorphism into **Industrial Realism**—a celeb
 
 Picture the control panel of a spacecraft, a 1980s Braun synthesizer, or a Teenage Engineering OP-1. It's **functional, organized, precise, and effortlessly cool**.
 
-**Dieter Rams Heritage**: Maximum clarity with minimum ornamentation. Typography is legible and hierarchical. Color is used sparingly—only where necessary for function (the safety-orange accent for interactive triggers and alerts).
+**Dieter Rams Heritage**: Maximum clarity with minimum ornamentation. Typography is legible and hierarchical. Color is used sparingly—only where necessary for function (PLN Blue accent for interactive triggers, PLN Yellow for highlights).
 
 **Teenage Engineering Playfulness**: Modular construction. Professional-grade precision with a sense of joy. Components feel like they could be swapped, rearranged, or upgraded.
 
@@ -52,11 +52,17 @@ The palette is **strictly light mode** and mimics physical materials under diffu
 -   **Muted (Recessed)**: `#d1d9e6` - Darker grey for sunken areas (input fields, screen bezels, grooves). Creates the "below surface" appearance.
 -   **Text (Primary)**: `#2d3436` - Dark charcoal ink. High contrast but softer than pure black for reduced eye strain.
 -   **Text Muted (Labels)**: `#4a5568` - Darker slate grey (improved from `#636e72` for WCAG AA compliance). Used for secondary text, labels, and metadata.
--   **Accent (Safety Orange)**: `#ff4757` - High-visibility "Braun Red" / "Safety Orange". Reserved exclusively for:
+-   **Accent (PLN Blue)**: `#0078f0` - High-visibility PLN Indonesia brand blue. Reserved exclusively for:
   - Interactive elements (primary buttons, links, toggles)
   - Status indicators (active LEDs, online badges)
   - Critical alerts or highlights
-  This color should appear sparingly—it's the "emergency stop button" of the palette.
+  WCAG AA: 4.25:1 contrast on white (passes large text ≥3:1). Buttons qualify as large text (bold uppercase).
+  On chassis (#e0e5ec): 3.35:1 (passes large text).
+-   **Accent Alt (PLN Yellow)**: `#fecd1f` - PLN Indonesia brand yellow. Used for:
+  - Secondary highlights and decorative accents
+  - Dark panel text/labels (8.7:1 on #2d3436 — excellent WCAG AAA)
+  - Background highlights, badges on dark surfaces
+  Not suitable for text on light backgrounds (1.19:1 on chassis).
 -   **Accent Foreground**: `#ffffff` - White text on accent backgrounds for maximum legibility.
 -   **Border (Shadow)**: `#babecc` - The shadow color in neumorphic pairs. Represents the darker half of the lighting equation.
 -   **Border Light (Highlight)**: `#ffffff` - The highlight color. The brighter half that creates dimensionality.
@@ -65,7 +71,8 @@ The palette is **strictly light mode** and mimics physical materials under diffu
 **Dark Accent Surfaces**: For dark technical panels (stats strip, benefits section), use:
 - Background: `#2d3436` or `#2c3e50` (charcoal to slate)
 - Text: `#ffffff`, `#e0e5ec`, or `#a8b2d1` (graded whites)
-- Accent: Same `#ff4757` maintains brand consistency
+- Accent: Same `#0078f0` maintains PLN brand consistency
+- Accent Alt: `#fecd1f` can be used for labels/highlights on dark backgrounds
 
 ### Typography
 
@@ -119,7 +126,7 @@ These dual-shadow combinations create depth through light simulation:
 -   **Sharp (Mechanical Edge)**: `4px 4px 8px rgba(0,0,0,0.15), -1px -1px 1px rgba(255,255,255,0.8)`
   - Harder-edged shadow for specific components (metal tags, borders).
 
--   **Glow (LED/Status Indicator)**: `0 0 10px 2px rgba(255, 71, 87, 0.6)`
+-   **Glow (LED/Status Indicator)**: `0 0 10px 2px rgba(0, 120, 240, 0.6)`
   - Colored bloom for active LEDs, focus states, and alerts. Can adjust color to green (`rgba(34,197,94,1)`) for "online" states.
 
 **Layered Shadows**: On hover, add additional shadows or increase spread to simulate elevation change. Example:
@@ -161,7 +168,7 @@ Textures differentiate this style from flat competitors. Apply strategically:
 Buttons are **tactile 3D objects**, not flat rectangles. They must convey pressability.
 
 **Visual Structure**:
--   **Primary (Accent)**: Background `#ff4757`, white text, uppercase, wide tracking. Border with `rgba(255,255,255,0.2)` for subtle rim. Shadow: `4px 4px 8px rgba(166,50,60,0.4), -4px -4px 8px rgba(255,100,110,0.4)` (neumorphic red-tinted shadows).
+-   **Primary (Accent)**: Background `#0078f0`, white text, uppercase, wide tracking. Border with `rgba(255,255,255,0.2)` for subtle rim. Shadow: `4px 4px 8px rgba(0,80,160,0.4), -4px -4px 8px rgba(80,160,255,0.4)` (neumorphic blue-tinted shadows).
 -   **Secondary (Chassis)**: Background matches chassis (`#e0e5ec`), dark text, base lift shadow. Hover darkens text to accent color.
 -   **Ghost (Flat Label)**: No background initially. Text muted. Hover applies muted background and recessed shadow.
 
@@ -278,7 +285,7 @@ These details separate this style from generic neumorphic templates:
 - Example: `<div className="skew-x-12 bg-[rgba(255,230,0,0.3)] backdrop-blur-sm" />`
 
 **Push Pins & Hanging Holes**:
-- Testimonials: Red circular push-pin at top center with highlight shine
+- Testimonials: Blue circular push-pin at top center with highlight shine
 - Pricing cards: Circular hole at top with inner shadow to simulate punched metal
 
 **Screw Heads & Vent Slots** (detailed in Cards section):

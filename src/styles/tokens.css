@@ -203,12 +203,13 @@
   --gap: 2.5rem;
 }
 
-/* --- Theme 5: Industrial Skeuomorphism --- */
+/* --- Theme 5: Industrial Skeuomorphism (PLN Indonesia Colors) --- */
 [data-theme="industrial"] {
-  /* Colors */
+  /* Colors — PLN Blue (#0078f0) + PLN Yellow (#fecd1f) */
   --color-bg: #e0e5ec;
   --color-fg: #2d3436;
-  --color-accent: #ff4757;
+  --color-accent: #0078f0;
+  --color-accent-alt: #fecd1f;
   --color-secondary: #4a5568;
   --color-muted: #d1d9e6;
   --color-border: #babecc;

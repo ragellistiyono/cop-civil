@@ -1,18 +1,19 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
+// ACTIVE THEME: Only 'industrial' is currently active.
+// To re-enable theme switching, restore the original THEMES array check and uncomment ThemeSwitcher in App.jsx
 const THEMES = ['hand-drawn', 'neo-brutalism', 'playful-geometric', 'professional', 'industrial'];
 const STORAGE_KEY = 'pln-cop-theme';
+const ACTIVE_THEME = 'industrial'; // <-- Change this to switch the locked theme
 
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return THEMES.includes(saved) ? saved : THEMES[0];
-    } catch {
-      return THEMES[0];
-    }
+    // Currently locked to ACTIVE_THEME. To restore multi-theme:
+    // const saved = localStorage.getItem(STORAGE_KEY);
+    // return THEMES.includes(saved) ? saved : THEMES[0];
+    return ACTIVE_THEME;
   });
 
   useEffect(() => {
