@@ -6,6 +6,7 @@ const THEME_META = {
   'hand-drawn': { emoji: '✏️', label: '1' },
   'neo-brutalism': { emoji: '💥', label: '2' },
   'playful-geometric': { emoji: '🔶', label: '3' },
+  'professional': { emoji: '🏛️', label: '4' },
 };
 
 export default function ThemeSwitcher() {

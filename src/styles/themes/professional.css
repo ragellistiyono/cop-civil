@@ -1,0 +1,473 @@
+/* ============================================
+   Theme: Professional (Serif / Editorial)
+   Elegant typography, thin rule lines, gold accents,
+   premium PLN Indonesia corporate identity
+   ============================================ */
+
+/* Clean ivory background — no dot grid, subtle paper texture */
+[data-theme="professional"] body {
+  background-image: none;
+  background-color: var(--color-bg);
+  letter-spacing: 0.01em;
+  line-height: 1.75;
+}
+
+/* Paper texture overlay */
+[data-theme="professional"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ambient gold glow */
+[data-theme="professional"] body::after {
+  content: '';
+  position: fixed;
+  top: -30%;
+  right: -20%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure all content sits above overlays */
+[data-theme="professional"] #root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Typography Overrides ---- */
+
+[data-theme="professional"] h1,
+[data-theme="professional"] h2,
+[data-theme="professional"] h3 {
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="professional"] h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="professional"] h2 {
+  font-size: clamp(1.85rem, 4vw, 2.5rem);
+  line-height: 1.2;
+}
+
+/* ---- Buttons — Refined, gold-accented ---- */
+
+[data-theme="professional"] .btn {
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border-width: 1px;
+}
+
+[data-theme="professional"] .btn-primary {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 1px 3px rgba(184, 134, 11, 0.2);
+}
+
+[data-theme="professional"] .btn-primary:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.25);
+}
+
+[data-theme="professional"] .btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(184, 134, 11, 0.15);
+}
+
+[data-theme="professional"] .btn-secondary {
+  background-color: transparent;
+  border-color: var(--color-fg);
+  color: var(--color-fg);
+  box-shadow: none;
+}
+
+[data-theme="professional"] .btn-secondary:hover {
+  background-color: var(--color-muted);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: none;
+  box-shadow: none;
+}
+
+[data-theme="professional"] .btn-secondary:active {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---- Cards — Thin borders, gold top accent ---- */
+
+[data-theme="professional"] .card {
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+  border-top: 2px solid var(--color-accent);
+  padding: 2rem;
+}
+
+[data-theme="professional"] .card:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+  border-color: #D5CFC8;
+}
+
+[data-theme="professional"] .card-icon {
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: var(--color-border);
+  background-color: var(--color-muted);
+  color: var(--color-accent);
+}
+
+[data-theme="professional"] .card-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="professional"] .card-text {
+  color: #6B6B6B;
+  line-height: 1.7;
+}
+
+/* ---- Navbar — Refined, tracked links ---- */
+
+[data-theme="professional"] .navbar {
+  border-bottom: 1px solid var(--color-border);
+  background-color: rgba(250, 250, 248, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme="professional"] .navbar-logo {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="professional"] .navbar-logo-secondary {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+[data-theme="professional"] .navbar-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  border: none;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  padding: 0.5rem 0.75rem;
+}
+
+[data-theme="professional"] .navbar-link:hover,
+[data-theme="professional"] .navbar-link.active {
+  color: var(--color-accent);
+  border-color: transparent;
+  border-bottom-color: var(--color-accent);
+  background: none;
+}
+
+/* ---- Badge — Small caps monospace ---- */
+
+[data-theme="professional"] .badge {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background-color: transparent;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  border-radius: 4px;
+  border-width: 1px;
+  transform: none;
+}
+
+/* ---- Stats — Clean with thin dividers ---- */
+
+[data-theme="professional"] .stat-item {
+  border: none;
+  border-right: 1px solid var(--color-border);
+  background-color: transparent;
+  position: relative;
+}
+
+[data-theme="professional"] .stat-item:last-child {
+  border-right: none;
+}
+
+[data-theme="professional"] .stat-number {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  color: var(--color-fg);
+}
+
+[data-theme="professional"] .stat-label {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6B6B6B;
+}
+
+/* ---- Section Headers — Editorial treatment ---- */
+
+[data-theme="professional"] .section-header {
+  margin-bottom: 4rem;
+}
+
+[data-theme="professional"] .section-subtitle {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+[data-theme="professional"] .section-title {
+  font-weight: 400;
+}
+
+/* Thin gold rule underline for section titles */
+[data-theme="professional"] .section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  margin: 1.25rem auto 0;
+  background: var(--color-accent);
+}
+
+[data-theme="professional"] .section-description {
+  color: #6B6B6B;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+/* ---- Workflow — Refined numbered steps ---- */
+
+[data-theme="professional"] .workflow-number {
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+[data-theme="professional"] .workflow-title {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="professional"] .workflow-text {
+  color: #6B6B6B;
+}
+
+/* ---- About highlights — Clean, minimal ---- */
+
+[data-theme="professional"] .about-highlight-item {
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+  border-left: 2px solid var(--color-accent);
+}
+
+[data-theme="professional"] .about-highlight-item:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
+[data-theme="professional"] .about-text p {
+  color: #4A4A4A;
+  line-height: 1.8;
+}
+
+/* ---- Hero — Subtle, editorial shapes ---- */
+
+[data-theme="professional"] .hero-visual::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  width: 100px;
+  height: 100px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: professional-drift 8s ease-in-out infinite;
+}
+
+[data-theme="professional"] .hero-visual::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 8%;
+  width: 70px;
+  height: 70px;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: professional-drift 10s ease-in-out infinite reverse;
+}
+
+[data-theme="professional"] .hero-shape-1 {
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: var(--color-border);
+  background-color: transparent;
+  opacity: 0.15;
+}
+
+[data-theme="professional"] .hero-shape-2 {
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: var(--color-accent);
+  background-color: rgba(184, 134, 11, 0.04);
+  opacity: 0.3;
+}
+
+[data-theme="professional"] .hero-shape-3 {
+  border-radius: 50%;
+  border-width: 1px;
+  border-color: var(--color-border);
+  background-color: transparent;
+  opacity: 0.1;
+}
+
+[data-theme="professional"] .hero-accent {
+  color: var(--color-accent);
+  font-style: italic;
+}
+
+/* ---- Bottom Navigation — Clean ---- */
+
+[data-theme="professional"] .bottom-nav {
+  border-top: 1px solid var(--color-border);
+  background-color: rgba(250, 250, 248, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+[data-theme="professional"] .bottom-nav-item {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-theme="professional"] .bottom-nav-item.active {
+  transform: none;
+}
+
+/* ---- Theme Switcher — Refined ---- */
+
+[data-theme="professional"] .theme-switcher-btn {
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+[data-theme="professional"] .theme-switcher-btn:hover {
+  transform: none;
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent);
+}
+
+[data-theme="professional"] .theme-switcher-popover {
+  border-radius: 8px;
+  border-width: 1px;
+}
+
+[data-theme="professional"] .theme-option {
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="professional"] .theme-option.active {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ---- Footer — Dark & sophisticated ---- */
+
+[data-theme="professional"] .footer {
+  border-top: 1px solid var(--color-border);
+  background-color: #1A1A1A;
+}
+
+[data-theme="professional"] .footer-heading {
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+[data-theme="professional"] .footer-logo {
+  font-family: var(--font-heading);
+  font-weight: 400;
+}
+
+[data-theme="professional"] .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Section alt background ---- */
+[data-theme="professional"] .section-alt {
+  background-color: #FFFFFF;
+}
+
+/* ---- Focus state — Gold ring ---- */
+[data-theme="professional"] .btn:focus-visible {
+  outline-color: var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ---- Selection — Gold highlight ---- */
+[data-theme="professional"] ::selection {
+  background-color: rgba(184, 134, 11, 0.15);
+  color: var(--color-fg);
+}
+
+/* ---- Subtle drift animation ---- */
+@keyframes professional-drift {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.02);
+  }
+}

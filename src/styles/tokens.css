@@ -152,3 +152,53 @@
   --container-max-width: 72rem;
   --gap: 2rem;
 }
+
+/* --- Theme 4: Professional (Serif/Editorial) --- */
+[data-theme="professional"] {
+  /* Colors */
+  --color-bg: #FAFAF8;
+  --color-fg: #1A1A1A;
+  --color-accent: #B8860B;
+  --color-secondary: #D4A84B;
+  --color-muted: #F5F3F0;
+  --color-border: #E8E4DF;
+  --color-card-bg: #ffffff;
+  --color-card-border: #E8E4DF;
+  --color-card-feature-bg: rgba(184, 134, 11, 0.06);
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans 3', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-weight-heading: 400;
+  --font-weight-body: 400;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+
+  /* Borders */
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  --border-style: solid;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(26, 26, 26, 0.04);
+  --shadow-md: 0 4px 12px rgba(26, 26, 26, 0.06);
+  --shadow-lg: 0 8px 24px rgba(26, 26, 26, 0.08);
+  --shadow-hover: 0 6px 16px rgba(26, 26, 26, 0.08);
+  --shadow-active: 0 1px 2px rgba(26, 26, 26, 0.04);
+
+  /* Transitions */
+  --transition-speed: 200ms;
+  --transition-easing: ease-out;
+
+  /* Spacing */
+  --section-padding-y: 6rem;
+  --container-max-width: 64rem;
+  --gap: 2.5rem;
+}
