@@ -6,6 +6,8 @@ import BottomNav from './components/BottomNav';
 // import ThemeSwitcher from './components/ThemeSwitcher';
 import Home from './pages/Home';
 import UnderConstruction from './components/UnderConstruction';
+import KontrakPage from './pages/KontrakPage';
+import KontrakDetailPage from './pages/KontrakDetailPage';
 
 function AppLayout() {
   const location = useLocation();
@@ -20,7 +22,8 @@ function AppLayout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/panduan" element={<UnderConstruction title="Panduan" />} />
-          <Route path="/kontrak" element={<UnderConstruction title="Kontrak" />} />
+          <Route path="/kontrak" element={<KontrakPage />} />
+          <Route path="/kontrak/:id" element={<KontrakDetailPage />} />
           <Route path="/qna" element={<UnderConstruction title="Q & A" />} />
         </Routes>
       </main>

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Home, BookOpen, HardHat, HelpCircle } from 'lucide-react';
+import { Home, BookOpen, FileText, HelpCircle } from 'lucide-react';
 
 const NAV_ITEMS = [
   { path: '/', label: 'Home', icon: Home },
   { path: '/panduan', label: 'Panduan', icon: BookOpen },
-  { path: '/pekerjaan-beton', label: 'Beton', icon: HardHat },
+  { path: '/kontrak', label: 'Kontrak', icon: FileText },
   { path: '/qna', label: 'Q&A', icon: HelpCircle },
 ];
 

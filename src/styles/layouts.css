@@ -516,6 +516,19 @@
   display: inline;
 }
 
+/* --- Kontrak Grid --- */
+.kontrak-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+.kontrak-dokumen-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
 /* --- Desktop Responsive --- */
 @media (min-width: 768px) {
   .hero-grid {
@@ -570,5 +583,21 @@
   .theme-switcher {
     bottom: 1.5rem;
     right: 1.5rem;
+  }
+
+  .kontrak-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dokumen-btn-label {
+    display: inline;
+  }
+
+  .pdf-viewer-iframe {
+    height: 70vh;
+  }
+
+  .dokumen-item {
+    padding: 1.25rem 1.5rem;
   }
 }
