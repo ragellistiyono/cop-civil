@@ -12,6 +12,7 @@ import KontrakDetailPage from './pages/KontrakDetailPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import AccessDenied from './pages/AccessDenied';
+import AdminDashboard from './pages/AdminDashboard';
 
 function AppLayout() {
   const location = useLocation();
@@ -43,7 +44,7 @@ function AppLayout() {
             path="/admin/dashboard"
             element={
               <ProtectedRoute adminOnly>
-                <UnderConstruction title="Admin Dashboard" />
+                <AdminDashboard />
               </ProtectedRoute>
             }
           />
