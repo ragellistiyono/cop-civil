@@ -601,3 +601,9 @@
     padding: 1.25rem 1.5rem;
   }
 }
+
+@media (min-width: 1024px) {
+  .kontrak-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
