@@ -31,7 +31,7 @@ export default function Hero() {
             <div className="hero-shape hero-shape-2" />
             <div className="hero-shape hero-shape-3" />
             <img
-              src="/images/asset-preview.webp"
+              src="/images/Logo_PLN.svg"
               alt="PLN Logo"
               className="hero-image"
             />
