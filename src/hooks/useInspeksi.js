@@ -60,13 +60,14 @@ export function useInspeksi() {
     }
   }, []);
 
-  const createInspeksi = useCallback(async (data, userId) => {
+  const createInspeksi = useCallback(async (data) => {
+    const ownerId = data.userId;
     const doc = await databases.createDocument(
       DB_ID,
       COL_INSPEKSI,
       ID.unique(),
       {
-        userId: data.userId,
+        userId: ownerId,
         userName: data.userName,
         tanggalInspeksi: data.tanggalInspeksi,
         lokasi: data.lokasi,
@@ -78,8 +79,8 @@ export function useInspeksi() {
         submittedAt: '',
       },
       [
-        Permission.read(Role.user(userId)),
-        Permission.update(Role.user(userId)),
+        Permission.read(Role.user(ownerId)),
+        Permission.update(Role.user(ownerId)),
         Permission.read(Role.label('admin')),
         Permission.delete(Role.label('admin')),
       ]

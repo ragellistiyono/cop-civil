@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { databases, ID } from '../lib/appwrite.js';
-import { Query } from 'appwrite';
+import { Query, Permission, Role } from 'appwrite';
 
 const DB_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID;
 const COL_NOTIFIKASI = import.meta.env.VITE_APPWRITE_COLLECTION_NOTIFIKASI;
@@ -64,15 +64,24 @@ export function useNotifikasi() {
   }, []);
 
   const createNotifikasi = useCallback(async (data) => {
-    const doc = await databases.createDocument(DB_ID, COL_NOTIFIKASI, ID.unique(), {
-      type: data.type,
-      message: data.message,
-      referenceId: data.referenceId,
-      userId: data.userId,
-      userName: data.userName,
-      read: false,
-      createdAt: new Date().toISOString(),
-    });
+    const doc = await databases.createDocument(
+      DB_ID,
+      COL_NOTIFIKASI,
+      ID.unique(),
+      {
+        type: data.type,
+        message: data.message,
+        referenceId: data.referenceId,
+        userId: data.userId,
+        userName: data.userName,
+        read: false,
+        createdAt: new Date().toISOString(),
+      },
+      [
+        Permission.read(Role.label('admin')),
+        Permission.update(Role.label('admin')),
+      ]
+    );
     return doc;
   }, []);
 

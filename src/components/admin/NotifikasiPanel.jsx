@@ -45,7 +45,6 @@ export default function NotifikasiPanel({ open, onClose, notifikasi, onRead, onN
       ref={panelRef}
       className="notifikasi-panel"
       role="dialog"
-      aria-modal="true"
       aria-label="Panel Notifikasi"
     >
       <div className="notifikasi-panel-header">

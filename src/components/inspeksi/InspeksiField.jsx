@@ -1,7 +1,9 @@
+import { useId } from 'react';
 import PhotoUpload from './PhotoUpload';
 
 export default function InspeksiField({ field, value, onChange, onPhotoUpload, onPhotoDelete, getPhotoUrl, disabled }) {
-  const fieldId = `field-${field.id}-${Math.random().toString(36).slice(2, 8)}`;
+  const reactId = useId();
+  const fieldId = `field-${field.id}-${reactId}`;
 
   if (field.type === 'photo') {
     const fileId = value?.fileId || '';

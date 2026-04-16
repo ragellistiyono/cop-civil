@@ -175,7 +175,7 @@ export default function InspeksiFormPage() {
       if (docId) {
         await updateInspeksi(docId, payload);
       } else {
-        const doc = await createInspeksi(payload, user?.$id);
+        const doc = await createInspeksi(payload);
         setDocId(doc.$id);
         if (!isEditMode) {
           window.history.replaceState(null, '', `/inspeksi/${doc.$id}/edit`);
@@ -189,6 +189,7 @@ export default function InspeksiFormPage() {
   };
 
   const handleSubmit = async () => {
+    if (!validateStep(0)) { setCurrentStep(0); return; }
     setSubmitting(true);
     setError('');
     try {
@@ -196,7 +197,7 @@ export default function InspeksiFormPage() {
       let inspeksiId = docId;
 
       if (!inspeksiId) {
-        const doc = await createInspeksi(payload, user?.$id);
+        const doc = await createInspeksi(payload);
         inspeksiId = doc.$id;
       }
 

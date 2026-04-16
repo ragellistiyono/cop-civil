@@ -626,10 +626,6 @@
     max-width: 36rem;
   }
 
-  .dashboard-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .inspeksi-list {
     grid-template-columns: repeat(2, 1fr);
   }
