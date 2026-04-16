@@ -1,17 +1,24 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Search, UserPlus, Plus, AlertCircle } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Search, UserPlus, Plus, AlertCircle, Eye } from 'lucide-react';
 import { useUsers } from '../hooks/useUsers.js';
 import { useAdminKontrak } from '../hooks/useAdminKontrak.js';
+import { useNotifikasi } from '../hooks/useNotifikasi.js';
+import { useInspeksi } from '../hooks/useInspeksi.js';
 import UserTable from '../components/admin/UserTable';
 import UserFormModal from '../components/admin/UserFormModal';
 import DeleteConfirmModal from '../components/admin/DeleteConfirmModal';
 import KontrakAdminTable from '../components/admin/KontrakAdminTable';
 import KontrakFormModal from '../components/admin/KontrakFormModal';
 import DokumenManager from '../components/admin/DokumenManager';
+import NotifikasiBadge from '../components/admin/NotifikasiBadge';
+import NotifikasiPanel from '../components/admin/NotifikasiPanel';
 
 const PAGE_SIZE = 10;
 
 export default function AdminDashboard() {
+  const navigate = useNavigate();
+
   /* ---- User Management State ---- */
   const { users, total: userTotal, loading: userLoading, error: userError, fetchUsers, createUser, updateUser, deleteUser } = useUsers();
 
@@ -171,12 +178,40 @@ export default function AdminDashboard() {
     }
   }, [kontrakList, dokumenKontrak]);
 
+  /* ---- Notifikasi + Inspeksi State ---- */
+  const { notifikasi: notifList, unreadCount, fetchNotifikasi, getUnreadCount, markAsRead } = useNotifikasi();
+  const { inspeksiList: recentInspeksi, fetchInspeksiList: fetchRecentInspeksi } = useInspeksi();
+  const [notifOpen, setNotifOpen] = useState(false);
+
+  useEffect(() => {
+    getUnreadCount();
+    fetchNotifikasi(15);
+    fetchRecentInspeksi(null, 'submitted', 10, 0);
+  }, [getUnreadCount, fetchNotifikasi, fetchRecentInspeksi]);
+
+  const handleNotifNavigate = (referenceId) => {
+    setNotifOpen(false);
+    navigate(`/admin/inspeksi/${referenceId}`);
+  };
+
   return (
     <section className="section admin-dashboard">
       <div className="container">
         <div className="admin-header">
-          <h1>Dashboard Admin</h1>
-          <p className="admin-subtitle">Manajemen Sistem CIVIL QTRACK UPT Malang</p>
+          <div>
+            <h1>Dashboard Admin</h1>
+            <p className="admin-subtitle">Manajemen Sistem CIVIL QTRACK UPT Malang</p>
+          </div>
+          <div className="admin-header-actions">
+            <NotifikasiBadge count={unreadCount} onClick={() => setNotifOpen((p) => !p)} />
+            <NotifikasiPanel
+              open={notifOpen}
+              onClose={() => setNotifOpen(false)}
+              notifikasi={notifList}
+              onRead={markAsRead}
+              onNavigate={handleNotifNavigate}
+            />
+          </div>
         </div>
 
         {/* ---- User Management Section ---- */}
@@ -223,20 +258,8 @@ export default function AdminDashboard() {
                 Menampilkan {userOffset + 1}–{Math.min(userOffset + PAGE_SIZE, userTotal)} dari {userTotal} user
               </span>
               <div className="admin-pagination-buttons">
-                <button
-                  className="btn admin-pagination-btn"
-                  disabled={userPage <= 1}
-                  onClick={() => setUserPage((p) => p - 1)}
-                >
-                  Sebelumnya
-                </button>
-                <button
-                  className="btn admin-pagination-btn"
-                  disabled={userPage >= userTotalPages}
-                  onClick={() => setUserPage((p) => p + 1)}
-                >
-                  Berikutnya
-                </button>
+                <button className="btn admin-pagination-btn" disabled={userPage <= 1} onClick={() => setUserPage((p) => p - 1)}>Sebelumnya</button>
+                <button className="btn admin-pagination-btn" disabled={userPage >= userTotalPages} onClick={() => setUserPage((p) => p + 1)}>Berikutnya</button>
               </div>
             </div>
           )}
@@ -287,21 +310,62 @@ export default function AdminDashboard() {
                 Menampilkan {kontrakOffset + 1}–{Math.min(kontrakOffset + PAGE_SIZE, kontrakTotal)} dari {kontrakTotal} kontrak
               </span>
               <div className="admin-pagination-buttons">
-                <button
-                  className="btn admin-pagination-btn"
-                  disabled={kontrakPage <= 1}
-                  onClick={() => setKontrakPage((p) => p - 1)}
-                >
-                  Sebelumnya
-                </button>
-                <button
-                  className="btn admin-pagination-btn"
-                  disabled={kontrakPage >= kontrakTotalPages}
-                  onClick={() => setKontrakPage((p) => p + 1)}
-                >
-                  Berikutnya
-                </button>
+                <button className="btn admin-pagination-btn" disabled={kontrakPage <= 1} onClick={() => setKontrakPage((p) => p - 1)}>Sebelumnya</button>
+                <button className="btn admin-pagination-btn" disabled={kontrakPage >= kontrakTotalPages} onClick={() => setKontrakPage((p) => p + 1)}>Berikutnya</button>
               </div>
+            </div>
+          )}
+        </div>
+
+        {/* ---- Laporan Inspeksi Section ---- */}
+        <div className="admin-section card" style={{ marginTop: '2rem' }}>
+          <div className="admin-section-header">
+            <h2 className="admin-section-title">Laporan Inspeksi Terbaru</h2>
+            <Link to="/admin/inspeksi" className="btn btn-secondary" style={{ fontSize: '0.85rem', padding: '0.5rem 1rem' }}>
+              Lihat Semua
+            </Link>
+          </div>
+
+          {recentInspeksi.length === 0 ? (
+            <div className="admin-table-empty">
+              <p>Belum ada laporan inspeksi.</p>
+            </div>
+          ) : (
+            <div className="admin-table-wrapper">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Lokasi</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {recentInspeksi.map((item) => (
+                    <tr key={item.$id}>
+                      <td className="admin-table-date">
+                        {item.tanggalInspeksi
+                          ? new Date(item.tanggalInspeksi).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
+                          : '-'}
+                      </td>
+                      <td className="admin-table-name">{item.lokasi || '-'}</td>
+                      <td>{item.userName || '-'}</td>
+                      <td>
+                        <span className={`inspeksi-status-badge inspeksi-status-badge--${item.status}`}>
+                          {item.status === 'submitted' ? 'Terkirim' : 'Draft'}
+                        </span>
+                      </td>
+                      <td>
+                        <Link to={`/admin/inspeksi/${item.$id}`} className="admin-action-btn" aria-label={`Lihat inspeksi ${item.lokasi}`}>
+                          <Eye size={16} strokeWidth={2} />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>
