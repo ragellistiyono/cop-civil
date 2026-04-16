@@ -14,6 +14,9 @@ import Login from './pages/Login';
 import AccessDenied from './pages/AccessDenied';
 import AdminDashboard from './pages/AdminDashboard';
 import UserDashboard from './pages/UserDashboard';
+import InspeksiFormPage from './pages/InspeksiFormPage';
+import InspeksiListPage from './pages/InspeksiListPage';
+import InspeksiDetailPage from './pages/InspeksiDetailPage';
 
 function AppLayout() {
   const location = useLocation();
@@ -46,6 +49,56 @@ function AppLayout() {
             element={
               <ProtectedRoute adminOnly>
                 <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          {/* ---- Inspeksi Routes (User) ---- */}
+          <Route
+            path="/inspeksi"
+            element={
+              <ProtectedRoute>
+                <InspeksiListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/inspeksi/baru"
+            element={
+              <ProtectedRoute>
+                <InspeksiFormPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/inspeksi/:id"
+            element={
+              <ProtectedRoute>
+                <InspeksiDetailPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/inspeksi/:id/edit"
+            element={
+              <ProtectedRoute>
+                <InspeksiFormPage />
+              </ProtectedRoute>
+            }
+          />
+          {/* ---- Inspeksi Routes (Admin) ---- */}
+          <Route
+            path="/admin/inspeksi"
+            element={
+              <ProtectedRoute adminOnly>
+                <InspeksiListPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/inspeksi/:id"
+            element={
+              <ProtectedRoute adminOnly>
+                <InspeksiDetailPage />
               </ProtectedRoute>
             }
           />
