@@ -629,6 +629,28 @@
   .dashboard-cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .inspeksi-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .inspeksi-wizard-body {
+    padding: 2.5rem;
+  }
+
+  .inspeksi-ringkasan-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .step-progress {
+    overflow-x: visible;
+  }
+
+  .dashboard-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -638,5 +660,9 @@
 
   .admin-section {
     padding: 2.5rem;
+  }
+
+  .inspeksi-list {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
