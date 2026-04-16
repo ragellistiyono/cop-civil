@@ -49,19 +49,14 @@ async function handleListKontrak(databases, req) {
   const queries = [Query.limit(limit), Query.offset(offset), Query.orderDesc('$createdAt')];
   if (search) queries.push(Query.search('namaProyek', search));
 
-  const kontrakResult = await databases.listDocuments({
-    databaseId: DB_ID(),
-    collectionId: COL_KONTRAK(),
-    queries,
-  });
+  const kontrakResult = await databases.listDocuments(DB_ID(), COL_KONTRAK(), queries);
 
   const kontrakWithDocs = await Promise.all(
     kontrakResult.documents.map(async (k) => {
-      const docsResult = await databases.listDocuments({
-        databaseId: DB_ID(),
-        collectionId: COL_DOKUMEN(),
-        queries: [Query.equal('kontrakId', k.$id), Query.limit(100)],
-      });
+      const docsResult = await databases.listDocuments(
+        DB_ID(), COL_DOKUMEN(),
+        [Query.equal('kontrakId', k.$id), Query.limit(100)]
+      );
       return {
         $id: k.$id,
         nomorKontrak: k.nomorKontrak,
@@ -95,16 +90,11 @@ async function handleCreateKontrak(databases, req) {
   if (!VALID_STATUS.includes(status))
     return { _status: 400, error: 'Status harus aktif, selesai, atau dalam-proses.' };
 
-  const doc = await databases.createDocument({
-    databaseId: DB_ID(),
-    collectionId: COL_KONTRAK(),
-    documentId: ID.unique(),
-    data: {
-      nomorKontrak: nomorKontrak.trim(),
-      namaProyek: namaProyek.trim(),
-      tanggal,
-      status,
-    },
+  const doc = await databases.createDocument(DB_ID(), COL_KONTRAK(), ID.unique(), {
+    nomorKontrak: nomorKontrak.trim(),
+    namaProyek: namaProyek.trim(),
+    tanggal,
+    status,
   });
 
   return {
@@ -119,11 +109,7 @@ async function handleCreateKontrak(databases, req) {
 
 async function handleUpdateKontrak(databases, kontrakId, req) {
   try {
-    await databases.getDocument({
-      databaseId: DB_ID(),
-      collectionId: COL_KONTRAK(),
-      documentId: kontrakId,
-    });
+    await databases.getDocument(DB_ID(), COL_KONTRAK(), kontrakId);
   } catch {
     return { _status: 404, error: 'Kontrak tidak ditemukan.' };
   }
@@ -142,12 +128,7 @@ async function handleUpdateKontrak(databases, kontrakId, req) {
     data.status = body.status;
   }
 
-  const updated = await databases.updateDocument({
-    databaseId: DB_ID(),
-    collectionId: COL_KONTRAK(),
-    documentId: kontrakId,
-    data,
-  });
+  const updated = await databases.updateDocument(DB_ID(), COL_KONTRAK(), kontrakId, data);
   return {
     $id: updated.$id,
     nomorKontrak: updated.nomorKontrak,
@@ -159,51 +140,34 @@ async function handleUpdateKontrak(databases, kontrakId, req) {
 
 async function handleDeleteKontrak(databases, storage, kontrakId) {
   try {
-    await databases.getDocument({
-      databaseId: DB_ID(),
-      collectionId: COL_KONTRAK(),
-      documentId: kontrakId,
-    });
+    await databases.getDocument(DB_ID(), COL_KONTRAK(), kontrakId);
   } catch {
     return { _status: 404, error: 'Kontrak tidak ditemukan.' };
   }
 
-  const docsResult = await databases.listDocuments({
-    databaseId: DB_ID(),
-    collectionId: COL_DOKUMEN(),
-    queries: [Query.equal('kontrakId', kontrakId), Query.limit(500)],
-  });
+  const docsResult = await databases.listDocuments(
+    DB_ID(), COL_DOKUMEN(),
+    [Query.equal('kontrakId', kontrakId), Query.limit(500)]
+  );
 
   for (const doc of docsResult.documents) {
     if (doc.sumber === 'appwrite' && doc.fileId) {
       try {
-        await storage.deleteFile({ bucketId: BUCKET_KONTRAK(), fileId: doc.fileId });
+        await storage.deleteFile(BUCKET_KONTRAK(), doc.fileId);
       } catch {
         /* file may already be deleted */
       }
     }
-    await databases.deleteDocument({
-      databaseId: DB_ID(),
-      collectionId: COL_DOKUMEN(),
-      documentId: doc.$id,
-    });
+    await databases.deleteDocument(DB_ID(), COL_DOKUMEN(), doc.$id);
   }
 
-  await databases.deleteDocument({
-    databaseId: DB_ID(),
-    collectionId: COL_KONTRAK(),
-    documentId: kontrakId,
-  });
+  await databases.deleteDocument(DB_ID(), COL_KONTRAK(), kontrakId);
   return { success: true };
 }
 
 async function handleAddDokumen(databases, kontrakId, req) {
   try {
-    await databases.getDocument({
-      databaseId: DB_ID(),
-      collectionId: COL_KONTRAK(),
-      documentId: kontrakId,
-    });
+    await databases.getDocument(DB_ID(), COL_KONTRAK(), kontrakId);
   } catch {
     return { _status: 404, error: 'Kontrak tidak ditemukan.' };
   }
@@ -226,12 +190,7 @@ async function handleAddDokumen(databases, kontrakId, req) {
   };
   if (fileId) data.fileId = fileId;
 
-  const doc = await databases.createDocument({
-    databaseId: DB_ID(),
-    collectionId: COL_DOKUMEN(),
-    documentId: ID.unique(),
-    data,
-  });
+  const doc = await databases.createDocument(DB_ID(), COL_DOKUMEN(), ID.unique(), data);
   return {
     $id: doc.$id,
     tipe: doc.tipe,
@@ -246,11 +205,7 @@ async function handleAddDokumen(databases, kontrakId, req) {
 async function handleDeleteDokumen(databases, storage, dokumenId) {
   let doc;
   try {
-    doc = await databases.getDocument({
-      databaseId: DB_ID(),
-      collectionId: COL_DOKUMEN(),
-      documentId: dokumenId,
-    });
+    doc = await databases.getDocument(DB_ID(), COL_DOKUMEN(), dokumenId);
   } catch {
     return { _status: 404, error: 'Dokumen tidak ditemukan.' };
   }
@@ -261,17 +216,13 @@ async function handleDeleteDokumen(databases, storage, dokumenId) {
 
   if (doc.sumber === 'appwrite' && doc.fileId) {
     try {
-      await storage.deleteFile({ bucketId: BUCKET_KONTRAK(), fileId: doc.fileId });
+      await storage.deleteFile(BUCKET_KONTRAK(), doc.fileId);
     } catch {
       /* file may already be deleted */
     }
   }
 
-  await databases.deleteDocument({
-    databaseId: DB_ID(),
-    collectionId: COL_DOKUMEN(),
-    documentId: dokumenId,
-  });
+  await databases.deleteDocument(DB_ID(), COL_DOKUMEN(), dokumenId);
   return { success: true };
 }
 
