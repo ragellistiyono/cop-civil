@@ -87,16 +87,20 @@ export function useAdminKontrak() {
   }, []);
 
   const uploadFile = useCallback(async (file) => {
-    const result = await storage.createFile(BUCKET_ID, ID.unique(), file);
+    const result = await storage.createFile({
+      bucketId: BUCKET_ID,
+      fileId: ID.unique(),
+      file,
+    });
     return result.$id;
   }, []);
 
   const deleteFile = useCallback(async (fileId) => {
-    await storage.deleteFile(BUCKET_ID, fileId);
+    await storage.deleteFile({ bucketId: BUCKET_ID, fileId });
   }, []);
 
   const getFileUrl = useCallback((fileId) => {
-    return storage.getFileView(BUCKET_ID, fileId);
+    return storage.getFileView({ bucketId: BUCKET_ID, fileId });
   }, []);
 
   return {

@@ -35,7 +35,7 @@ async function handleListUsers(users, req) {
   const queries = [Query.limit(limit), Query.offset(offset), Query.orderDesc('$createdAt')];
   if (search) queries.push(Query.search('name', search));
 
-  const result = await users.list(queries);
+  const result = await users.list({ queries });
   return {
     total: result.total,
     users: result.users.map(formatUser),
@@ -52,13 +52,18 @@ async function handleCreateUser(users, req) {
   if (!['admin', 'user'].includes(role))
     return { _status: 400, error: 'Role harus admin atau user.' };
 
-  const user = await users.create(ID.unique(), email, undefined, password, name.trim());
+  const user = await users.create({
+    userId: ID.unique(),
+    email,
+    password,
+    name: name.trim(),
+  });
 
   if (role === 'admin') {
-    await users.updateLabels(user.$id, ['admin']);
+    await users.updateLabels({ userId: user.$id, labels: ['admin'] });
   }
 
-  const final = await users.get(user.$id);
+  const final = await users.get({ userId: user.$id });
   return formatUser(final);
 }
 
@@ -66,22 +71,22 @@ async function handleUpdateUser(users, userId, req) {
   const { name, role } = parseBody(req);
 
   try {
-    await users.get(userId);
+    await users.get({ userId });
   } catch {
     return { _status: 404, error: 'User tidak ditemukan.' };
   }
 
   if (name !== undefined && name.trim()) {
-    await users.updateName(userId, name.trim());
+    await users.updateName({ userId, name: name.trim() });
   }
 
   if (role !== undefined) {
     if (!['admin', 'user'].includes(role))
       return { _status: 400, error: 'Role harus admin atau user.' };
-    await users.updateLabels(userId, role === 'admin' ? ['admin'] : []);
+    await users.updateLabels({ userId, labels: role === 'admin' ? ['admin'] : [] });
   }
 
-  const updated = await users.get(userId);
+  const updated = await users.get({ userId });
   return formatUser(updated);
 }
 
@@ -92,12 +97,12 @@ async function handleDeleteUser(users, userId, req) {
   }
 
   try {
-    await users.get(userId);
+    await users.get({ userId });
   } catch {
     return { _status: 404, error: 'User tidak ditemukan.' };
   }
 
-  await users.delete(userId);
+  await users.delete({ userId });
   return { success: true };
 }
 

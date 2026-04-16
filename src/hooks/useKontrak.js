@@ -19,7 +19,7 @@ if (import.meta.env.DEV && !APPWRITE_CONFIGURED) {
 
 function getFileUrl(fileId) {
   if (!BUCKET_ID || !fileId) return null;
-  return storage.getFileView(BUCKET_ID, fileId);
+  return storage.getFileView({ bucketId: BUCKET_ID, fileId });
 }
 
 function mapAppwriteDoc(kontrakDoc, dokumenDocs) {
@@ -56,17 +56,25 @@ export function useKontrakList() {
 
     async function fetchFromAppwrite() {
       try {
-        const kontrakResult = await databases.listDocuments(DB_ID, COL_KONTRAK, [
-          Query.orderDesc('$createdAt'),
-          Query.limit(100),
-        ]);
+        const kontrakResult = await databases.listDocuments({
+          databaseId: DB_ID,
+          collectionId: COL_KONTRAK,
+          queries: [
+            Query.orderDesc('$createdAt'),
+            Query.limit(100),
+          ],
+        });
 
         const mapped = await Promise.all(
           kontrakResult.documents.map(async (k) => {
-            const docsResult = await databases.listDocuments(DB_ID, COL_DOKUMEN, [
-              Query.equal('kontrakId', k.$id),
-              Query.limit(100),
-            ]);
+            const docsResult = await databases.listDocuments({
+              databaseId: DB_ID,
+              collectionId: COL_DOKUMEN,
+              queries: [
+                Query.equal('kontrakId', k.$id),
+                Query.limit(100),
+              ],
+            });
             return mapAppwriteDoc(k, docsResult.documents);
           })
         );
@@ -115,11 +123,19 @@ export function useKontrakById(id) {
 
     async function fetchFromAppwrite() {
       try {
-        const doc = await databases.getDocument(DB_ID, COL_KONTRAK, id);
-        const docsResult = await databases.listDocuments(DB_ID, COL_DOKUMEN, [
-          Query.equal('kontrakId', id),
-          Query.limit(100),
-        ]);
+        const doc = await databases.getDocument({
+          databaseId: DB_ID,
+          collectionId: COL_KONTRAK,
+          documentId: id,
+        });
+        const docsResult = await databases.listDocuments({
+          databaseId: DB_ID,
+          collectionId: COL_DOKUMEN,
+          queries: [
+            Query.equal('kontrakId', id),
+            Query.limit(100),
+          ],
+        });
         if (!cancelled) {
           setKontrak(mapAppwriteDoc(doc, docsResult.documents));
           setLoading(false);

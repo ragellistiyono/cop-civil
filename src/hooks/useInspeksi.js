@@ -35,7 +35,11 @@ export function useInspeksi() {
       if (userId) queries.push(Query.equal('userId', userId));
       if (status) queries.push(Query.equal('status', status));
 
-      const result = await databases.listDocuments(DB_ID, COL_INSPEKSI, queries);
+      const result = await databases.listDocuments({
+        databaseId: DB_ID,
+        collectionId: COL_INSPEKSI,
+        queries,
+      });
       setInspeksiList(result.documents);
       setTotal(result.total);
     } catch (err) {
@@ -49,7 +53,11 @@ export function useInspeksi() {
     setLoading(true);
     setError(null);
     try {
-      const doc = await databases.getDocument(DB_ID, COL_INSPEKSI, id);
+      const doc = await databases.getDocument({
+        databaseId: DB_ID,
+        collectionId: COL_INSPEKSI,
+        documentId: id,
+      });
       setInspeksi(doc);
       return doc;
     } catch (err) {
@@ -62,11 +70,11 @@ export function useInspeksi() {
 
   const createInspeksi = useCallback(async (data) => {
     const ownerId = data.userId;
-    const doc = await databases.createDocument(
-      DB_ID,
-      COL_INSPEKSI,
-      ID.unique(),
-      {
+    const doc = await databases.createDocument({
+      databaseId: DB_ID,
+      collectionId: COL_INSPEKSI,
+      documentId: ID.unique(),
+      data: {
         userId: ownerId,
         userName: data.userName,
         tanggalInspeksi: data.tanggalInspeksi,
@@ -78,13 +86,13 @@ export function useInspeksi() {
         status: 'draft',
         submittedAt: '',
       },
-      [
+      permissions: [
         Permission.read(Role.user(ownerId)),
         Permission.update(Role.user(ownerId)),
         Permission.read(Role.label('admin')),
         Permission.delete(Role.label('admin')),
-      ]
-    );
+      ],
+    });
     return doc;
   }, []);
 
@@ -97,7 +105,12 @@ export function useInspeksi() {
     if (data.data !== undefined) updatePayload.data = JSON.stringify(data.data);
     if (data.fotoIds !== undefined) updatePayload.fotoIds = JSON.stringify(data.fotoIds);
 
-    const doc = await databases.updateDocument(DB_ID, COL_INSPEKSI, id, updatePayload);
+    const doc = await databases.updateDocument({
+      databaseId: DB_ID,
+      collectionId: COL_INSPEKSI,
+      documentId: id,
+      data: updatePayload,
+    });
     return doc;
   }, []);
 
@@ -113,22 +126,31 @@ export function useInspeksi() {
     if (data.data !== undefined) updatePayload.data = JSON.stringify(data.data);
     if (data.fotoIds !== undefined) updatePayload.fotoIds = JSON.stringify(data.fotoIds);
 
-    const doc = await databases.updateDocument(DB_ID, COL_INSPEKSI, id, updatePayload);
+    const doc = await databases.updateDocument({
+      databaseId: DB_ID,
+      collectionId: COL_INSPEKSI,
+      documentId: id,
+      data: updatePayload,
+    });
     return doc;
   }, []);
 
   const uploadPhoto = useCallback(async (file) => {
-    const result = await storage.createFile(BUCKET_INSPEKSI, ID.unique(), file);
+    const result = await storage.createFile({
+      bucketId: BUCKET_INSPEKSI,
+      fileId: ID.unique(),
+      file,
+    });
     return result.$id;
   }, []);
 
   const deletePhoto = useCallback(async (fileId) => {
-    await storage.deleteFile(BUCKET_INSPEKSI, fileId);
+    await storage.deleteFile({ bucketId: BUCKET_INSPEKSI, fileId });
   }, []);
 
   const getPhotoUrl = useCallback((fileId) => {
     if (!fileId) return null;
-    return storage.getFileView(BUCKET_INSPEKSI, fileId);
+    return storage.getFileView({ bucketId: BUCKET_INSPEKSI, fileId });
   }, []);
 
   return {

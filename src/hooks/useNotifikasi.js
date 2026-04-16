@@ -22,11 +22,15 @@ export function useNotifikasi() {
     setLoading(true);
     setError(null);
     try {
-      const result = await databases.listDocuments(DB_ID, COL_NOTIFIKASI, [
-        Query.orderDesc('$createdAt'),
-        Query.limit(limit),
-        Query.offset(offset),
-      ]);
+      const result = await databases.listDocuments({
+        databaseId: DB_ID,
+        collectionId: COL_NOTIFIKASI,
+        queries: [
+          Query.orderDesc('$createdAt'),
+          Query.limit(limit),
+          Query.offset(offset),
+        ],
+      });
       setNotifikasi(result.documents);
       return result.documents;
     } catch (err) {
@@ -39,10 +43,11 @@ export function useNotifikasi() {
 
   const getUnreadCount = useCallback(async () => {
     try {
-      const result = await databases.listDocuments(DB_ID, COL_NOTIFIKASI, [
-        Query.equal('read', false),
-        Query.limit(1),
-      ]);
+      const result = await databases.listDocuments({
+        databaseId: DB_ID,
+        collectionId: COL_NOTIFIKASI,
+        queries: [Query.equal('read', false), Query.limit(1)],
+      });
       setUnreadCount(result.total);
       return result.total;
     } catch (err) {
@@ -53,7 +58,12 @@ export function useNotifikasi() {
 
   const markAsRead = useCallback(async (id) => {
     try {
-      await databases.updateDocument(DB_ID, COL_NOTIFIKASI, id, { read: true });
+      await databases.updateDocument({
+        databaseId: DB_ID,
+        collectionId: COL_NOTIFIKASI,
+        documentId: id,
+        data: { read: true },
+      });
       setNotifikasi((prev) =>
         prev.map((n) => (n.$id === id ? { ...n, read: true } : n))
       );
@@ -64,11 +74,11 @@ export function useNotifikasi() {
   }, []);
 
   const createNotifikasi = useCallback(async (data) => {
-    const doc = await databases.createDocument(
-      DB_ID,
-      COL_NOTIFIKASI,
-      ID.unique(),
-      {
+    const doc = await databases.createDocument({
+      databaseId: DB_ID,
+      collectionId: COL_NOTIFIKASI,
+      documentId: ID.unique(),
+      data: {
         type: data.type,
         message: data.message,
         referenceId: data.referenceId,
@@ -77,11 +87,11 @@ export function useNotifikasi() {
         read: false,
         createdAt: new Date().toISOString(),
       },
-      [
+      permissions: [
         Permission.read(Role.label('admin')),
         Permission.update(Role.label('admin')),
-      ]
-    );
+      ],
+    });
     return doc;
   }, []);
 
