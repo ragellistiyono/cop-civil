@@ -14,6 +14,11 @@ const PAGE_TITLES = {
   '/admin/kontrak': 'Manajemen Kontrak',
   '/admin/inspeksi': 'Laporan Inspeksi',
   '/admin/notifikasi': 'Notifikasi',
+  '/admin/security': 'Ringkasan Keamanan',
+  '/admin/security/incidents': 'Log Insiden',
+  '/admin/security/blocklist': 'Daftar Blokir IP',
+  '/admin/security/ai-reports': 'Laporan AI',
+  '/admin/security/config': 'Konfigurasi Keamanan',
 };
 
 function getPageTitle(pathname) {

@@ -9,6 +9,7 @@ import {
   X,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext.jsx';
+import SecuritySidebarGroup from './security/SecuritySidebarGroup.jsx';
 
 const MENU_ITEMS = [
   { path: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -75,6 +76,8 @@ export default function AdminSidebar({ open, onClose }) {
             </Link>
           ))}
         </nav>
+
+        <SecuritySidebarGroup onNavigate={onClose} />
 
         <div className="admin-sidebar-footer">
           <div className="admin-sidebar-user">
