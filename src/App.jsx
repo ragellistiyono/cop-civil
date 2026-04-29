@@ -3,8 +3,6 @@ import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext.jsx';
 import Navbar from './components/Navbar';
 import BottomNav from './components/BottomNav';
-// DISABLED: Theme switcher floating button — uncomment to re-enable multi-theme support
-// import ThemeSwitcher from './components/ThemeSwitcher';
 import Home from './pages/Home';
 import UnderConstruction from './components/UnderConstruction';
 import KontrakPage from './pages/KontrakPage';
@@ -12,14 +10,41 @@ import KontrakDetailPage from './pages/KontrakDetailPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import AccessDenied from './pages/AccessDenied';
-import AdminDashboard from './pages/AdminDashboard';
 import UserDashboard from './pages/UserDashboard';
 import InspeksiFormPage from './pages/InspeksiFormPage';
 import InspeksiListPage from './pages/InspeksiListPage';
 import InspeksiDetailPage from './pages/InspeksiDetailPage';
+import AdminLayout from './components/admin/AdminLayout';
+import AdminOverview from './pages/admin/AdminOverview';
+import AdminUserPage from './pages/admin/AdminUserPage';
+import AdminKontrakPage from './pages/admin/AdminKontrakPage';
+import AdminNotifikasiPage from './pages/admin/AdminNotifikasiPage';
 
 function AppLayout() {
   const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  if (isAdminRoute) {
+    return (
+      <Routes>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute adminOnly>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="dashboard" element={<AdminOverview />} />
+          <Route path="users" element={<AdminUserPage />} />
+          <Route path="kontrak" element={<AdminKontrakPage />} />
+          <Route path="inspeksi" element={<InspeksiListPage />} />
+          <Route path="inspeksi/:id" element={<InspeksiDetailPage />} />
+          <Route path="notifikasi" element={<AdminNotifikasiPage />} />
+        </Route>
+      </Routes>
+    );
+  }
 
   return (
     <>
@@ -44,15 +69,6 @@ function AppLayout() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/admin/dashboard"
-            element={
-              <ProtectedRoute adminOnly>
-                <AdminDashboard />
-              </ProtectedRoute>
-            }
-          />
-          {/* ---- Inspeksi Routes (User) ---- */}
           <Route
             path="/inspeksi"
             element={
@@ -85,28 +101,9 @@ function AppLayout() {
               </ProtectedRoute>
             }
           />
-          {/* ---- Inspeksi Routes (Admin) ---- */}
-          <Route
-            path="/admin/inspeksi"
-            element={
-              <ProtectedRoute adminOnly>
-                <InspeksiListPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/inspeksi/:id"
-            element={
-              <ProtectedRoute adminOnly>
-                <InspeksiDetailPage />
-              </ProtectedRoute>
-            }
-          />
         </Routes>
       </main>
       <BottomNav currentPath={location.pathname} />
-      {/* DISABLED: Theme switcher floating button — uncomment to re-enable */}
-      {/* <ThemeSwitcher /> */}
     </>
   );
 }
