@@ -19,6 +19,11 @@ import AdminOverview from './pages/admin/AdminOverview';
 import AdminUserPage from './pages/admin/AdminUserPage';
 import AdminKontrakPage from './pages/admin/AdminKontrakPage';
 import AdminNotifikasiPage from './pages/admin/AdminNotifikasiPage';
+import SecurityDashboardPage from './pages/admin/SecurityDashboardPage';
+import IncidentLogPage from './pages/admin/IncidentLogPage';
+import BlocklistPage from './pages/admin/BlocklistPage';
+import AiReportPage from './pages/admin/AiReportPage';
+import SecurityConfigPage from './pages/admin/SecurityConfigPage';
 
 function AppLayout() {
   const location = useLocation();
@@ -41,6 +46,11 @@ function AppLayout() {
           <Route path="inspeksi" element={<InspeksiListPage />} />
           <Route path="inspeksi/:id" element={<InspeksiDetailPage />} />
           <Route path="notifikasi" element={<AdminNotifikasiPage />} />
+          <Route path="security" element={<SecurityDashboardPage />} />
+          <Route path="security/incidents" element={<IncidentLogPage />} />
+          <Route path="security/blocklist" element={<BlocklistPage />} />
+          <Route path="security/ai-reports" element={<AiReportPage />} />
+          <Route path="security/config" element={<SecurityConfigPage />} />
         </Route>
       </Routes>
     );
