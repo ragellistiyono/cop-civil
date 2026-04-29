@@ -1,0 +1,32 @@
+{
+  "category": "path_traversal",
+  "description": "Path Traversal / Local File Inclusion detection patterns",
+  "version": "1.0.0",
+  "patterns": [
+    { "id": "PT-001", "pattern": "../../../", "severity": "high", "description": "Triple directory traversal" },
+    { "id": "PT-002", "pattern": "..\\..\\..\\", "severity": "high", "description": "Windows triple traversal" },
+    { "id": "PT-003", "pattern": "....//....//", "severity": "high", "description": "Double-dot-slash evasion" },
+    { "id": "PT-004", "pattern": "..%2f..%2f", "severity": "high", "description": "URL-encoded traversal (after decode)" },
+    { "id": "PT-005", "pattern": "..%5c..%5c", "severity": "high", "description": "URL-encoded backslash traversal" },
+    { "id": "PT-006", "pattern": "/etc/passwd", "severity": "high", "description": "Linux password file" },
+    { "id": "PT-007", "pattern": "/etc/shadow", "severity": "critical", "description": "Linux shadow file" },
+    { "id": "PT-008", "pattern": "/etc/hosts", "severity": "medium", "description": "Hosts file access" },
+    { "id": "PT-009", "pattern": "/proc/self/", "severity": "high", "description": "Proc self access" },
+    { "id": "PT-010", "pattern": "c:\\windows\\", "severity": "high", "description": "Windows system directory" },
+    { "id": "PT-011", "pattern": "c:\\boot.ini", "severity": "high", "description": "Windows boot config" },
+    { "id": "PT-012", "pattern": "win.ini", "severity": "medium", "description": "Windows INI file" },
+    { "id": "PT-013", "pattern": "web.config", "severity": "medium", "description": "ASP.NET config file" },
+    { "id": "PT-014", "pattern": ".htaccess", "severity": "medium", "description": "Apache config file" },
+    { "id": "PT-015", "pattern": ".env", "severity": "high", "description": "Environment file access" },
+    { "id": "PT-016", "pattern": "wp-config.php", "severity": "high", "description": "WordPress config" },
+    { "id": "PT-017", "pattern": "/var/log/", "severity": "medium", "description": "Log file access" },
+    { "id": "PT-018", "pattern": "php://filter", "severity": "critical", "description": "PHP stream filter (LFI)" },
+    { "id": "PT-019", "pattern": "php://input", "severity": "critical", "description": "PHP input stream (RCE)" },
+    { "id": "PT-020", "pattern": "expect://", "severity": "critical", "description": "PHP expect wrapper (RCE)" },
+    { "id": "PT-021", "pattern": "file:///", "severity": "high", "description": "File protocol access" },
+    { "id": "PT-022", "pattern": ".git/config", "severity": "high", "description": "Git config exposure" },
+    { "id": "PT-023", "pattern": ".svn/entries", "severity": "high", "description": "SVN metadata exposure" },
+    { "id": "PT-024", "pattern": "id_rsa", "severity": "critical", "description": "SSH private key access" },
+    { "id": "PT-025", "pattern": "authorized_keys", "severity": "high", "description": "SSH authorized keys" }
+  ]
+}
