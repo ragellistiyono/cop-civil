@@ -47,7 +47,6 @@ export default function ITPTahapanGrid({ itp, onChange }) {
           <div className="itp-tahapan-field">
             <div className="itp-tahapan-label">
               <span className="itp-tahapan-label-main">Jenis Besi</span>
-              <span className="itp-tahapan-label-sub">Dropdown</span>
             </div>
             <div className="itp-field-control">
               <ITPFieldIndicator required={!isValid(pt.jenisBesi)} />
@@ -68,7 +67,6 @@ export default function ITPTahapanGrid({ itp, onChange }) {
           <div className="itp-tahapan-field">
             <div className="itp-tahapan-label">
               <span className="itp-tahapan-label-main">Jarak Sengkang</span>
-              <span className="itp-tahapan-label-sub">Input</span>
             </div>
             <div className="itp-field-control">
               <input
@@ -85,7 +83,6 @@ export default function ITPTahapanGrid({ itp, onChange }) {
           <div className="itp-tahapan-field">
             <div className="itp-tahapan-label">
               <span className="itp-tahapan-label-main">Pemeriksaan Bekisting</span>
-              <span className="itp-tahapan-label-sub">Radio Buttons</span>
             </div>
             <div className="itp-radio-group">
               <label className="itp-radio">
@@ -114,7 +111,6 @@ export default function ITPTahapanGrid({ itp, onChange }) {
           <div className="itp-tahapan-field">
             <div className="itp-tahapan-label">
               <span className="itp-tahapan-label-main">Dokumentasi</span>
-              <span className="itp-tahapan-label-sub">Multiple Upload</span>
             </div>
             <ITPUploadSlot label="Upload File / GDrive Upload" />
           </div>
@@ -133,7 +129,6 @@ export default function ITPTahapanGrid({ itp, onChange }) {
           <div className="itp-tahapan-field">
             <div className="itp-tahapan-label">
               <span className="itp-tahapan-label-main">Slump Test</span>
-              <span className="itp-tahapan-label-sub">Input</span>
             </div>
             <div className="itp-field-control">
               <input
@@ -150,7 +145,6 @@ export default function ITPTahapanGrid({ itp, onChange }) {
           <div className="itp-tahapan-field">
             <div className="itp-tahapan-label">
               <span className="itp-tahapan-label-main">Sample Benda Uji</span>
-              <span className="itp-tahapan-label-sub">Counter</span>
             </div>
             <div className="itp-field-control itp-counter-row">
               <ITPFieldIndicator required={!Number(pp.sampleBendaUji)} />
@@ -169,7 +163,6 @@ export default function ITPTahapanGrid({ itp, onChange }) {
           <div className="itp-tahapan-field">
             <div className="itp-tahapan-label">
               <span className="itp-tahapan-label-main">Hammer Test Hasil</span>
-              <span className="itp-tahapan-label-sub">Input Field</span>
             </div>
             <div className="itp-field-control">
               <ITPFieldIndicator required={!isValid(pp.hammerTest)} />
