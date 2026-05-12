@@ -24,9 +24,11 @@ export default function UserLayout() {
           </button>
 
           <div className="user-topbar-brand">
-            <div className="user-topbar-logo" aria-hidden="true">
-              <span>PLN</span>
-            </div>
+            <img
+              src="/images/pln-logo.png"
+              alt="Logo PLN"
+              className="user-topbar-logo-img"
+            />
             <div className="user-topbar-brand-text">
               <span className="user-topbar-brand-main">PT PLN (Persero)</span>
               <span className="user-topbar-brand-sub">

@@ -32,7 +32,14 @@ export default function UserSidebar({ open, onClose }) {
       />
       <aside className={`user-sidebar${open ? ' open' : ''}`}>
         <div className="user-sidebar-header">
-          <span className="user-sidebar-brand">QTRACK</span>
+          <div className="user-sidebar-brand">
+            <img
+              src="/images/pln-logo.png"
+              alt="Logo PLN"
+              className="user-sidebar-brand-logo"
+            />
+            <span className="user-sidebar-brand-text">PLN</span>
+          </div>
           <button
             className="user-sidebar-close"
             onClick={onClose}

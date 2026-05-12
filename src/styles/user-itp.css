@@ -63,8 +63,21 @@
 }
 
 .user-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-sidebar-brand-logo {
+  width: 2rem;
+  height: 2.4rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.user-sidebar-brand-text {
   font-family: var(--font-heading);
-  font-weight: var(--font-weight-heading);
+  font-weight: 800;
   font-size: 1.1rem;
   color: var(--color-accent);
   letter-spacing: 0.05em;
@@ -179,18 +192,10 @@
   min-width: 0;
 }
 
-.user-topbar-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--color-warning, var(--color-accent));
-  color: var(--color-fg);
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 0.9rem;
+.user-topbar-logo-img {
+  width: 2rem;
+  height: 2.4rem;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
@@ -949,11 +954,13 @@
     padding: 1rem 0.5rem;
   }
 
-  .user-sidebar-brand {
-    font-size: 0;
+  .user-sidebar-brand-text {
+    display: none;
   }
-  .user-sidebar-brand::first-letter {
-    font-size: 1.1rem;
+
+  .user-sidebar-brand-logo {
+    width: 1.75rem;
+    height: 2.1rem;
   }
 
   .user-sidebar-close { display: none; }
@@ -999,8 +1006,13 @@
     padding: 1.25rem 1rem;
   }
 
-  .user-sidebar-brand {
-    font-size: 1.1rem;
+  .user-sidebar-brand-text {
+    display: inline;
+  }
+
+  .user-sidebar-brand-logo {
+    width: 2rem;
+    height: 2.4rem;
   }
 
   .user-sidebar-item {
