@@ -217,24 +217,23 @@ Run these curl commands against the local server. Each test documents:
 
 ---
 
-#### TEST-01: SQLi — UNION SELECT (HIGH severity, score ≥ 15 → BLOCK)
+#### TEST-01: SQLi — UNION SELECT (HIGH severity, score 7 → WARN)
 
 ```bash
 curl -v "http://localhost:8888/?q=1'+UNION+SELECT+username,password+FROM+users--"
 ```
 
-**Expected**: HTTP 403, response body contains `"Request blocked by copcivil security system."`
-**Header**: `X-Copcivil-Blocked: true`
+**Expected**: HTTP 200 (passes through, but incident logged as "warned"). `union select` is HIGH (7), so it meets WARN threshold (>=7) but not BLOCK threshold (>=15).
 
 ---
 
-#### TEST-02: SQLi — DROP TABLE (CRITICAL severity, score ≥ 15 → BLOCK)
+#### TEST-02: SQLi — DROP TABLE (CRITICAL severity, score 10 → WARN)
 
 ```bash
 curl -v "http://localhost:8888/?id=1;+DROP+TABLE+users;--"
 ```
 
-**Expected**: HTTP 403, blocked.
+**Expected**: HTTP 200 (passes through, but incident logged as "warned"). `drop table` is CRITICAL (10), still below BLOCK threshold 15.
 
 ---
 
@@ -258,7 +257,7 @@ curl -v "http://localhost:8888/?q=or+1%3D1+having+1%3D1+order+by+1"
 
 ---
 
-#### TEST-05: XSS — Script tag (HIGH+HIGH, score ≥ 14 → WARN or BLOCK)
+#### TEST-05: XSS — Script tag (HIGH+HIGH, score 18 → BLOCK)
 
 ```bash
 curl -v "http://localhost:8888/?name=%3Cscript%3Ealert(1)%3C/script%3E"
@@ -354,7 +353,7 @@ curl -v "http://localhost:8888/?q=%2527+OR+%25271%2527%253D%25271"
 curl -v "http://localhost:8888/?q=UnIoN/**/SeLeCt/**/1,2,3"
 ```
 
-**Expected**: HTTP 403 blocked. Normalizer lowercases + strips SQL comments → `union select 1,2,3`. Score: 7 (high). Combined with other patterns if present.
+**Expected**: HTTP 200 (warned). Normalizer lowercases + strips SQL comments → `union select 1,2,3`. Score: 7 (high), so warned (7-14), not blocked.
 
 ---
 

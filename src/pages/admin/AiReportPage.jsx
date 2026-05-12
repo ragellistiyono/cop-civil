@@ -21,10 +21,19 @@ export default function AiReportPage() {
       return;
     }
 
+    if (periodStart > periodEnd) {
+      alert('Periode akhir harus sama atau setelah periode awal.');
+      return;
+    }
+
     try {
+      // Date input gives YYYY-MM-DD; force full-day range in local time.
+      const periodStartIso = new Date(`${periodStart}T00:00:00`).toISOString();
+      const periodEndIso = new Date(`${periodEnd}T23:59:59.999`).toISOString();
+
       await generateReport({
-        periodStart: new Date(periodStart).toISOString(),
-        periodEnd: new Date(periodEnd).toISOString(),
+        periodStart: periodStartIso,
+        periodEnd: periodEndIso,
       });
       setShowGenerate(false);
       setPeriodStart('');

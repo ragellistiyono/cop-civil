@@ -52,7 +52,23 @@ export function useAiReports() {
         method: 'POST',
       });
 
-      const response = JSON.parse(execution.responseBody);
+      const rawBody = execution?.responseBody ?? '';
+      let response = null;
+
+      if (typeof rawBody === 'string' && rawBody.trim() !== '') {
+        try {
+          response = JSON.parse(rawBody);
+        } catch {
+          const details = execution?.errors || 'Invalid JSON response from AI report function.';
+          throw new Error(details);
+        }
+      }
+
+      if (!response) {
+        const details = execution?.errors || 'Empty response from AI report function.';
+        throw new Error(details);
+      }
+
       if (response.error) throw new Error(response.error);
       return response;
     } catch (err) {

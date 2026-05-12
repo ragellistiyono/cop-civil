@@ -24,3 +24,20 @@ dist-ssr
 *.sw?
 .env
 *.tar.gz
+
+# Local Netlify folder
+.netlify
+
+# Agent/Editor local config
+.agents/
+.windsurf/
+.kilo/
+skills-lock.json
+
+# Documents (thesis/personal)
+docs/*.docx
+docs/thesis-extracted.md
+docs/thesis-mods/
+
+# Deno
+deno.lock
