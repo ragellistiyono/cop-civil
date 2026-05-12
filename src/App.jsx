@@ -10,7 +10,12 @@ import KontrakDetailPage from './pages/KontrakDetailPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import AccessDenied from './pages/AccessDenied';
-import UserDashboard from './pages/UserDashboard';
+import UserLayout from './components/user/UserLayout';
+import UserITPDashboard from './pages/user/UserITPDashboard';
+import UserITPManagement from './pages/user/UserITPManagement';
+import UserReports from './pages/user/UserReports';
+import UserManagement from './pages/user/UserManagement';
+import UserSettings from './pages/user/UserSettings';
 import InspeksiFormPage from './pages/InspeksiFormPage';
 import InspeksiListPage from './pages/InspeksiListPage';
 import InspeksiDetailPage from './pages/InspeksiDetailPage';
@@ -28,6 +33,29 @@ import SecurityConfigPage from './pages/admin/SecurityConfigPage';
 function AppLayout() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
+  const isDashboardRoute = location.pathname.startsWith('/dashboard');
+
+  if (isDashboardRoute) {
+    return (
+      <Routes>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <UserLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<UserITPDashboard />} />
+          <Route path="itp" element={<UserITPManagement />} />
+          <Route path="itp/:id" element={<UserITPDashboard />} />
+          <Route path="reports" element={<UserReports />} />
+          <Route path="user-management" element={<UserManagement />} />
+          <Route path="settings" element={<UserSettings />} />
+        </Route>
+      </Routes>
+    );
+  }
 
   if (isAdminRoute) {
     return (
@@ -71,14 +99,6 @@ function AppLayout() {
           <Route path="/qna" element={<UnderConstruction title="Q & A" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/access-denied" element={<AccessDenied />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <UserDashboard />
-              </ProtectedRoute>
-            }
-          />
           <Route
             path="/inspeksi"
             element={

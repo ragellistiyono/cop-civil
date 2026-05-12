@@ -11,6 +11,7 @@ import './styles/themes/playful-geometric.css';
 import './styles/themes/professional.css';
 import './styles/themes/industrial.css';
 import './styles/security.css';
+import './styles/user-itp.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
