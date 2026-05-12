@@ -30,7 +30,7 @@ export default function ITPTahapanGrid({ itp, onChange }) {
           <div className="itp-tahapan-field">
             <div className="itp-tahapan-label">
               <span className="itp-tahapan-label-main">Ukuran Besi</span>
-              <span className="itp-tahapan-label-sub">Input</span>
+              
             </div>
             <div className="itp-field-control">
               <input
