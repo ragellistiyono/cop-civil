@@ -90,7 +90,7 @@ export default function ITPGeneralInfo({ itp, onChange }) {
         </div>
 
         <div className="itp-field itp-field--tim">
-          <label className="itp-field-label" htmlFor="itp-tim-text">Tim Pengawas (Text areas)</label>
+          <label className="itp-field-label" htmlFor="itp-tim-text">Tim Pengawas</label>
           <textarea
             id="itp-tim-text"
             className="itp-input itp-textarea"
