@@ -75,7 +75,7 @@ export default function ITPGeneralInfo({ itp, onChange }) {
 
         <div className="itp-field">
           <label className="itp-field-label" htmlFor="itp-tanggal">
-            Tanggal<br />Pengecoran
+            Tanggal Pengecoran
           </label>
           <div className="itp-field-control">
             <ITPFieldIndicator required={!isValid(itp.tanggalPengecoran)} />
