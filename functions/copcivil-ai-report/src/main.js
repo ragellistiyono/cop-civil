@@ -114,12 +114,12 @@ async function callOpenRouter(model, systemPrompt, userPrompt, log) {
 async function generateReport(databases, periodStart, periodEnd, requestedBy, log) {
   // Dynamic import of logic module
   const { aggregateIncidents, buildAnalyticsPrompt, SECURITY_ANALYST_SYSTEM_PROMPT } =
-    await import('../../../copcivil/ai-report-logic.js');
+    await import('./ai-report-logic.js');
 
   const incidents = await fetchIncidents(databases, periodStart, periodEnd);
 
   if (incidents.length === 0) {
-    return {
+    const emptyRecord = {
       report_type: requestedBy ? 'on_demand' : 'periodic',
       period_start: periodStart,
       period_end: periodEnd,
@@ -130,6 +130,10 @@ async function generateReport(databases, periodStart, periodEnd, requestedBy, lo
       generated_at: new Date().toISOString(),
       requested_by: requestedBy || '',
     };
+
+    const doc = await databases.createDocument(DB_ID(), REPORTS_ID(), ID.unique(), emptyRecord);
+    log(`[copcivil-ai-report] Empty-period report generated: ${doc.$id}`);
+    return { $id: doc.$id, ...emptyRecord };
   }
 
   const stats = aggregateIncidents(incidents);
@@ -191,12 +195,15 @@ export default async ({ req, res, log, error }) => {
     const client = initClient();
     const databases = new Databases(client);
 
-    const method = req.method;
-    const path = req.path || '/';
+    // Appwrite executions can arrive with method/path variations depending on SDK/runtime.
+    // Normalize them so frontend calls don't fail with false-negative "Route not found".
+    const method = (req.method || 'GET').toUpperCase();
+    const rawPath = req.path || '/';
+    const path = rawPath.length > 1 ? rawPath.replace(/\/+$/, '') : rawPath;
 
     let result;
 
-    if (path === '/generate' && method === 'POST') {
+    if ((path === '/generate' || path === '/') && (method === 'POST' || method === 'GET')) {
       result = await handleGenerate(databases, req, log);
     } else if (path === '/periodic' && method === 'POST') {
       result = await handlePeriodic(databases, log);
