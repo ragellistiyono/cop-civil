@@ -832,8 +832,8 @@
 .itp-action-btn--danger  { background-color: var(--color-danger, #dc2626); }
 .itp-action-btn--info    { background-color: var(--color-info, var(--color-accent)); }
 .itp-action-btn--warning {
-  background-color: var(--color-warning, #ebde31);
-  color: var(--color-fg);
+  background-color: #eab308;
+  color: #1a1a1a;
 }
 .itp-action-btn--success { background-color: var(--color-success, #16a34a); }
 
