@@ -19,9 +19,9 @@ export default function UserITPDashboard() {
 
   return (
     <div className="itp-dashboard">
-      <h1 className="itp-dashboard-title">
+      <h2 className="itp-dashboard-title">
         QTRACK - INSPECTION AND TEST PLAN (ITP) DASHBOARD
-      </h1>
+      </h2>
 
       <ITPGeneralInfo itp={itp} onChange={updateField} />
 
