@@ -34,10 +34,5 @@ dist-ssr
 .kilo/
 skills-lock.json
 
-# Documents (thesis/personal)
-docs/*.docx
-docs/thesis-extracted.md
-docs/thesis-mods/
-
 # Deno
 deno.lock
