@@ -84,11 +84,11 @@ All routes inherit the existing `ProtectedRoute adminOnly` wrapper from the pare
 |---|---|---|
 | List/filter/count incidents | `databases.listDocuments()` | `security_incidents` collection |
 | List blocked IPs | `databases.listDocuments()` | `ip_blocklist` collection |
-| Block IP (manual) | `functions.createExecution()` | `copcivil-blocklist` (path: `/block`, method: `POST`) |
-| Unblock IP | `functions.createExecution()` | `copcivil-blocklist` (path: `/unblock`, method: `POST`) |
-| Cleanup expired blocks | `functions.createExecution()` | `copcivil-blocklist` (path: `/cleanup`, method: `POST`) |
+| Block IP (manual) | `functions.createExecution()` | `copcivil-blocklist` (xpath: `/block`, method: `POST`) |
+| Unblock IP | `functions.createExecution()` | `copcivil-blocklist` (xpath: `/unblock`, method: `POST`) |
+| Cleanup expired blocks | `functions.createExecution()` | `copcivil-blocklist` (xpath: `/cleanup`, method: `POST`) |
 | List AI reports | `databases.listDocuments()` | `ai_reports` collection |
-| Generate AI report | `functions.createExecution()` | `copcivil-ai-report` (path: `/generate`, method: `POST`) |
+| Generate AI report | `functions.createExecution()` | `copcivil-ai-report` (xpath: `/generate`, method: `POST`) |
 | Read config | `databases.listDocuments()` | `security_config` collection |
 | Update config | `databases.updateDocument()` | `security_config` collection |
 
@@ -127,6 +127,8 @@ Hybrid: reads via DB, writes via function execution.
 - `blockIp({ ip_address, reason, expires_at })` — calls `copcivil-blocklist /block`
 - `unblockIp({ ip_address, whitelist })` — calls `copcivil-blocklist /unblock`
 - `cleanupExpired()` — calls `copcivil-blocklist /cleanup`
+
+> **SDK quirk (Appwrite web SDK v18+):** `functions.createExecution()` uses the property name `xpath`, not `path`. Also use `ExecutionMethod.POST` enum (imported from `'appwrite'`) instead of the raw string `'POST'`. The official Appwrite docs still show `path` — that is incorrect for current SDK versions and the SDK silently drops unknown properties, causing the function to receive default `path: /` and return `Route not found`.
 
 ### 5.3 `useAiReports()`
 
