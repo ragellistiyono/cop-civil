@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { databases, functions } from '../lib/appwrite.js';
-import { Query } from 'appwrite';
+import { Query, ExecutionMethod } from 'appwrite';
 
 const DB_ID = import.meta.env.VITE_APPWRITE_DATABASE_SECURITY_ID;
 const COL_REPORTS = import.meta.env.VITE_APPWRITE_COLLECTION_AI_REPORTS;
@@ -48,8 +48,8 @@ export function useAiReports() {
           period_start: periodStart,
           period_end: periodEnd,
         }),
-        path: '/generate',
-        method: 'POST',
+        xpath: '/generate',
+        method: ExecutionMethod.POST,
       });
 
       const rawBody = execution?.responseBody ?? '';

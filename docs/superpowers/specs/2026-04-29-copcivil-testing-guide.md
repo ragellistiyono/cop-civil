@@ -139,6 +139,21 @@ For each of the 3 functions, go to **Appwrite Console** → **Functions** → **
 #### Function 3: `copcivil-blocklist`
 - Same settings, source from `/functions/copcivil-blocklist/`
 
+#### Execute Access (REQUIRED for all 3 functions)
+
+After creating each function, set **Execute access** so the dashboard can actually call it. Without this you will get `No permissions provided for action 'execute'`.
+
+1. Open the function → **Settings** → **Execute access**
+2. Click **+ Add role**
+3. Recommended: pick `label:admin` for `copcivil-blocklist` and `copcivil-ai-report` (admin-only operations)
+4. For `copcivil-guard` (Layer 2 incident logging called from edge functions, not the dashboard), set whatever access matches your edge function's auth model. If the edge calls it server-side with an API key, leave Execute access empty and rely on the API key.
+
+Then label your admin user(s):
+
+1. **Auth** → **Users** → click the admin user
+2. **Labels** tab → **Update labels** → add `admin`
+3. Save
+
 **Environment variables for ALL 3 functions** (Settings → Variables):
 
 | Key | Value |

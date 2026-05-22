@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { databases, functions } from '../lib/appwrite.js';
-import { Query } from 'appwrite';
+import { Query, ExecutionMethod } from 'appwrite';
 
 const DB_ID = import.meta.env.VITE_APPWRITE_DATABASE_SECURITY_ID;
 const COL_BLOCKLIST = import.meta.env.VITE_APPWRITE_COLLECTION_BLOCKLIST;
@@ -66,8 +66,8 @@ export function useBlocklist() {
       const execution = await functions.createExecution({
         functionId: FN_BLOCKLIST,
         body: JSON.stringify({ ip_address, reason, expires_at }),
-        path: '/block',
-        method: 'POST',
+        xpath: '/block',
+        method: ExecutionMethod.POST,
       });
 
       const response = JSON.parse(execution.responseBody);
@@ -85,8 +85,8 @@ export function useBlocklist() {
       const execution = await functions.createExecution({
         functionId: FN_BLOCKLIST,
         body: JSON.stringify({ ip_address, whitelist }),
-        path: '/unblock',
-        method: 'POST',
+        xpath: '/unblock',
+        method: ExecutionMethod.POST,
       });
 
       const response = JSON.parse(execution.responseBody);
@@ -104,8 +104,8 @@ export function useBlocklist() {
       const execution = await functions.createExecution({
         functionId: FN_BLOCKLIST,
         body: '',
-        path: '/cleanup',
-        method: 'POST',
+        xpath: '/cleanup',
+        method: ExecutionMethod.POST,
       });
 
       const response = JSON.parse(execution.responseBody);
