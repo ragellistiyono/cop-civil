@@ -93,12 +93,13 @@ async function refreshBlocklist() {
 
 async function logIncidentAsync(payload) {
   if (!APPWRITE_ENDPOINT || !APPWRITE_PROJECT_ID || !COPCIVIL_GUARD_FUNCTION_ID) {
-    return;
+    console.warn('[copcivil-edge] Missing Appwrite config, skipping incident log.');
+    return false;
   }
 
   try {
     const url = `${APPWRITE_ENDPOINT}/functions/${COPCIVIL_GUARD_FUNCTION_ID}/executions`;
-    fetch(url, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -110,11 +111,18 @@ async function logIncidentAsync(payload) {
         method: 'POST',
         body: JSON.stringify(payload),
       }),
-    }).catch((err) => {
-      console.error('[copcivil-edge] Log failed:', err.message);
     });
+
+    if (!response.ok) {
+      const responseText = await response.text().catch(() => '');
+      console.error('[copcivil-edge] Log failed:', response.status, responseText.slice(0, 500));
+      return false;
+    }
+
+    return true;
   } catch (err) {
     console.error('[copcivil-edge] Log error:', err.message);
+    return false;
   }
 }
 
@@ -150,7 +158,8 @@ export default async (request, context) => {
   if (result.action === 'blocked') {
     const blocked = buildBlockedResponse(ip, 'Malicious request detected.');
 
-    // Fire-and-forget log
+    // Blocked requests must wait for logging; otherwise the edge isolate can end
+    // before Appwrite receives the incident execution request.
     const logPayload = buildLogPayload({
       ip,
       url: request.url,
@@ -158,7 +167,7 @@ export default async (request, context) => {
       userAgent: request.headers.get('user-agent') || '',
       detection: result,
     });
-    logIncidentAsync(logPayload);
+    await logIncidentAsync(logPayload);
 
     return new Response(blocked.body, {
       status: blocked.status,
@@ -175,7 +184,12 @@ export default async (request, context) => {
       userAgent: request.headers.get('user-agent') || '',
       detection: result,
     });
-    logIncidentAsync(logPayload);
+    const logPromise = logIncidentAsync(logPayload);
+    if (typeof context.waitUntil === 'function') {
+      context.waitUntil(logPromise);
+    } else {
+      await logPromise;
+    }
   }
 
   // 7. Clean request — pass through
